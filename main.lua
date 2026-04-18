@@ -6,13 +6,16 @@
 -- saveid: ldjam59mastoastpandalk
 
 require "objects"
+require "utils"
 
 objects = {}
 inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
+selected = nil
 
 function BOOT()
 	t=0
 	test = create(button, 120, 120)
+	hero1 = create(hero, 120, 60)
 end
 
 function TIC()
@@ -23,6 +26,10 @@ end
 
 function update()
 	updateInputs()
+	if inputs.clickL then
+		hero1.start = {x=hero1.x,y=hero1.y}
+		hero1.target = {x=inputs.x,y=inputs.y}
+	end
 	--
 	for i, obj in ipairs(objects) do
         obj:update()
@@ -46,7 +53,7 @@ function draw()
         obj:draw()
     end
 	--
-	print(inputs.left,0, 0, 3)
+	-- print(inputs.left,0, 0, 3)
 end
 
 -- <TILES>

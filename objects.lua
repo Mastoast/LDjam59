@@ -43,8 +43,11 @@ function create(parent, x, y, hit_w, hit_h)
 	return obj
 end
 
+-- BUTTON
+
 button = new_type(object)
 button.hover=false
+button.selected=false
 
 function button.update(self)
 	local x,y,click=mouse()
@@ -54,7 +57,7 @@ function button.update(self)
 	end
 end
 function button.on_click(self)
-	-- action on click
+	-- self.selected=true
 end
 function button.draw(self)
 	if self.hover then
@@ -62,4 +65,36 @@ function button.draw(self)
 	else
 		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,3)
 	end
+end
+
+-- HEROES
+hero = new_type(button)
+hero.start = nil
+hero.target = nil
+hero.speed = 2
+
+function hero.update(self)
+	if self.target then
+		local sdist = dist(self.start, self.target)
+		local cdist = dist(self, self.target)
+		local ratio = (cdist-self.speed)/sdist
+		if cdist <= 1 then
+			self.x = self.target.x
+			self.y = self.target.y
+			self.target = nil
+		else
+			self.x = lerp(self.start.x, self.target.x, 1-ratio)
+			self.y = lerp(self.start.y, self.target.y, 1-ratio)
+		end
+	end
+end
+
+function hero.draw(self)
+	if self.target then
+		line(self.x, self.y, self.target.x, self.target.y, 11)
+		circ(self.target.x, self.target.y, 3, 11)
+		circb(self.target.x, self.target.y, 5, 11)
+	end
+	rect(self.x - self.hit_w/2,self.y - self.hit_h/2,self.hit_w,self.hit_h,8)
+
 end
