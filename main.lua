@@ -2,23 +2,115 @@
 -- author:  pandalk, mastoast
 -- license: MIT License
 -- script:  lua
+-- input:  mouse
 -- saveid: ldjam59mastoastpandalk
 
-t=0
-x=96
-y=24
+objects = {}
+inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
+
+function BOOT()
+	t=0
+	test = create(button, 120, 120)
+end
 
 function TIC()
-
-	if btn(0) then y=y-1 end
-	if btn(1) then y=y+1 end
-	if btn(2) then x=x-1 end
-	if btn(3) then x=x+1 end
-
-	cls(13)
-	spr(1+t%60//30*2,x,y,14,3,0,0,2,2)
-	print("HELLO WORLD!",84,84)
+	update()
+	draw()
 	t=t+1
+end
+
+function update()
+	updateInputs()
+	--
+	for i, obj in ipairs(objects) do
+        obj:update()
+    end
+end
+
+function updateInputs()
+	local x,y,left,middle,right=mouse()
+	inputs.x = x
+	inputs.y = y
+	inputs.clickL = not inputs.left and left
+	inputs.releaseL = inputs.left and not left
+	inputs.left = left
+end
+
+function draw()
+	cls(0)
+	map()
+	--
+	for i, obj in ipairs(objects) do
+        obj:draw()
+    end
+	--
+	print(inputs.left,0, 0, 3)
+end
+
+-- OBJECTS
+
+object = {}
+object.hit_x = 0
+object.hit_y = 0
+object.hit_w = 8
+object.hit_h = 8
+object.hover = false
+lookup = {}
+function lookup.__index(self, i) return self.parent[i] end
+
+function object.init(self) end
+function object.update(self) end
+function object.draw(self) end
+function object.on_click(self) end
+function object.on_hover(self) end
+
+function object.contains(self, px, py)
+    return
+        px >= self.x + self.hit_x and
+        px < self.x + self.hit_x + self.hit_w and
+        py >= self.y + self.hit_y and
+        py < self.y + self.hit_y + self.hit_h
+end
+
+function new_type(parent)
+	local obj = {}
+	obj.parent = parent or object
+	setmetatable(obj, lookup)
+	return obj
+end
+
+function create(parent, x, y, hit_w, hit_h)
+	local obj = {}
+	obj.parent = parent
+    obj.x = x
+    obj.y = y
+    obj.hit_w = hit_w or 8
+    obj.hit_h = hit_h or 8
+	setmetatable(obj, lookup)
+	table.insert(objects, obj)
+	obj:init()
+	return obj
+end
+
+button = new_type(object)
+button.hover=false
+
+function button.update(self)
+	local x,y,click=mouse()
+	self.hover=self:contains(x,y)
+	if (self.hover and inputs.clickL) then
+		self:on_click()
+	end
+end
+function button.on_click(self)
+	-- action on click
+end
+function button.draw(self)
+	if self.hover then
+		circ(self.x,self.y,self.hit_w,4)
+	else
+		circ(self.x,self.y,self.hit_w,3)
+	end
 end
 
 -- <TILES>
