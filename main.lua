@@ -107,9 +107,9 @@ function button.on_click(self)
 end
 function button.draw(self)
 	if self.hover then
-		circ(self.x,self.y,self.hit_w,4)
+		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,4)
 	else
-		circ(self.x,self.y,self.hit_w,3)
+		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,3)
 	end
 end
 
