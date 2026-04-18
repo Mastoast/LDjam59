@@ -16,6 +16,10 @@ function BOOT()
 	t=0
 	test = create(button, 120, 120)
 	hero1 = create(hero, 120, 60)
+	threat1 = create(threat, 180, 70)
+	threat1.delay = 900
+	threat2 = create(threat, 25, 25)
+	threat2.delay = 2500
 end
 
 function TIC()
@@ -32,8 +36,19 @@ function update()
 	end
 	--
 	for i, obj in ipairs(objects) do
-        obj:update()
+        update_obj(obj, i)
     end
+end
+
+function update_obj(obj, i)
+	obj.hover=obj:contains(inputs.x, inputs.y)
+	if (obj.hover and inputs.clickL) then
+		obj:on_click()
+	end
+	obj:update()
+	if obj.destroyed then
+		table.remove(objects, i)
+	end
 end
 
 function updateInputs()

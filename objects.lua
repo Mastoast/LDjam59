@@ -50,20 +50,16 @@ button.hover=false
 button.selected=false
 
 function button.update(self)
-	local x,y,click=mouse()
-	self.hover=self:contains(x,y)
-	if (self.hover and inputs.clickL) then
-		self:on_click()
-	end
 end
+
 function button.on_click(self)
-	-- self.selected=true
 end
+
 function button.draw(self)
 	if self.hover then
-		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,4)
+		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w/2,4)
 	else
-		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,3)
+		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w/2,3)
 	end
 end
 
@@ -97,4 +93,25 @@ function hero.draw(self)
 	end
 	rect(self.x - self.hit_w/2,self.y - self.hit_h/2,self.hit_w,self.hit_h,8)
 
+end
+
+
+-- THREAT
+threat = new_type(button)
+threat.score = 50
+threat.type = "fire"
+threat.delay = 180
+
+function threat.update(self)
+	self.delay = self.delay - 1
+	if self.delay < 0 then
+		self.destroyed = true
+	end
+end
+
+function threat.draw(self)
+	trib(self.x,self.y,self.x-3,self.y-5,self.x+3,self.y-5,4)
+	circ(self.x, self.y-10, 5, 4)
+	printc(math.ceil(self.delay/60), self.x, self.y-10, 12)
+	-- circb(self.target.x, self.target.y, 5, 11)
 end
