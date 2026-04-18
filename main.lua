@@ -2,23 +2,51 @@
 -- author:  pandalk, mastoast
 -- license: MIT License
 -- script:  lua
+-- input:  mouse
 -- saveid: ldjam59mastoastpandalk
 
-t=0
-x=96
-y=24
+require "objects"
+
+objects = {}
+inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
+
+function BOOT()
+	t=0
+	test = create(button, 120, 120)
+end
 
 function TIC()
-
-	if btn(0) then y=y-1 end
-	if btn(1) then y=y+1 end
-	if btn(2) then x=x-1 end
-	if btn(3) then x=x+1 end
-
-	cls(13)
-	spr(1+t%60//30*2,x,y,14,3,0,0,2,2)
-	print("HELLO WORLD!",84,84)
+	update()
+	draw()
 	t=t+1
+end
+
+function update()
+	updateInputs()
+	--
+	for i, obj in ipairs(objects) do
+        obj:update()
+    end
+end
+
+function updateInputs()
+	local x,y,left,middle,right=mouse()
+	inputs.x = x
+	inputs.y = y
+	inputs.clickL = not inputs.left and left
+	inputs.releaseL = inputs.left and not left
+	inputs.left = left
+end
+
+function draw()
+	cls(0)
+	map()
+	--
+	for i, obj in ipairs(objects) do
+        obj:draw()
+    end
+	--
+	print(inputs.left,0, 0, 3)
 end
 
 -- <TILES>
