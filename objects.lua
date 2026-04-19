@@ -65,8 +65,8 @@ end
 
 -- HEROES
 hero = new_type(object)
-hero.hit_x = 4
-hero.hit_y = 4
+hero.hit_x = -4
+hero.hit_y = -4
 hero.start = nil
 hero.target = nil
 hero.speed = 0.5
@@ -102,7 +102,7 @@ function hero.update(self)
 	end
 
 	for key, obj in pairs(objects) do
-		if obj.parent == threat and obj:contains(self.x + self.hit_x, self.y + self.hit_y) then
+		if obj.parent == threat and obj:contains(self.x - self.hit_x, self.y - self.hit_y) then
 			obj:fight()
 		end
 	end
@@ -114,11 +114,15 @@ function hero.draw(self)
 		circ(self.target.x, self.target.y, 3, self.c)
 		circb(self.target.x, self.target.y, 5, self.c)
 	end
-	spr(self.spr, self.x - self.hit_x,self.y - self.hit_y, 0, 1, self.flip)
+	spr(self.spr, self.x + self.hit_x,self.y + self.hit_y, 0, 1, self.flip)
 	if selected == self then
 		circb(self.x,self.y,11,self.c)
 		circb(self.x,self.y,7,self.c)
 	end
+end
+
+function hero.on_click(self)
+	selected = self
 end
 
 function hero.set_target(self, tx, ty)
@@ -134,11 +138,12 @@ portrait.hero = nil
 
 function portrait.draw(self)
 	spr(self.spr,self.x,self.y,-1,1,0,0,self.hit_w/8,self.hit_h/8)
-	if self.hover then
-		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,14)
-	else
-		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
-	end
+	rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,self.hero.c)
+	-- if self.hover then
+	-- 	rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,14)
+	-- else
+	-- 	rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
+	-- end
 	
 end
 

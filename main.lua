@@ -16,9 +16,9 @@ function BOOT()
 	selected = nil
 
 	heroes = {
-		{x=120,y=60,c=8,spr=45,px=2,py=118,pspr=12},
-		{x=10,y=60,c=14,spr=44,px=22,py=118,pspr=14},
-		{x=80,y=60,c=12,spr=60,px=42,py=118,pspr=46}
+		{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12},
+		{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14},
+		{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46}
 	}
 
 	init_heros(heroes)
@@ -50,28 +50,36 @@ end
 
 function update()
 	updateInputs()
-	if inputs.clickL then
+	if inputs.clickR then
 		if selected and selected.parent == hero then
 			selected:set_target(inputs.x, inputs.y)
-			selected = nil
 		end
 	end
 	--
+	local clickt = false
 	for i, obj in ipairs(objects) do
-        update_obj(obj, i)
+        if update_obj(obj, i) then
+			clickt = true
+		end
     end
+	if not clickt and inputs.clickL then
+		selected = nil
+	end
 	update_psystems()
 end
 
 function update_obj(obj, i)
+	local clickt = false
 	obj.hover=obj:contains(inputs.x, inputs.y)
 	if (obj.hover and inputs.clickL) then
 		obj:on_click()
+		clickt = true
 	end
 	obj:update()
 	if obj.destroyed then
 		table.remove(objects, i)
 	end
+	return clickt
 end
 
 function updateInputs()
@@ -81,6 +89,8 @@ function updateInputs()
 	inputs.clickL = not inputs.left and left
 	inputs.releaseL = inputs.left and not left
 	inputs.left = left
+	inputs.clickR = not inputs.right and right
+	inputs.right = right
 end
 
 function draw()
@@ -93,7 +103,7 @@ function draw()
         obj:draw()
     end
 	--
-	if selected then print(selected,0, 0, 3) end
+	print(test,0, 0, 3)
 end
 
 -- <TILES>
@@ -257,7 +267,14 @@ end
 
 -- <SFX>
 -- 000:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000304000000000
+-- 001:010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100000000000000
+-- 002:020002000200020002000200020002000200020002000200020002000200020002000200020002000200020002000200020002000200020002000200000000000000
+-- 003:030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300000000000000
 -- </SFX>
+
+-- <PATTERNS>
+-- 000:d00012000000d00012000000d00012000000d00012000000d00012000000d00012000000d00012000000d00012000000d00012000000d00012000000d00012000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- </PATTERNS>
 
 -- <TRACKS>
 -- 000:100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
