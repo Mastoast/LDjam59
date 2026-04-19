@@ -115,10 +115,13 @@ portrait.hit_h = 16
 portrait.hero = nil
 
 function portrait.draw(self)
-	if self.spr then
-		spr(self.spr,self.x,self.y,-1,1,0,0,self.hit_w/8,self.hit_h/8)
+	spr(self.spr,self.x,self.y,-1,1,0,0,self.hit_w/8,self.hit_h/8)
+	if self.hover then
+		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,14)
+	else
 		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
 	end
+	
 end
 
 function portrait.on_click(self)

@@ -13,9 +13,9 @@ inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 selected = nil
 
 heroes = {
-	{x=120,y=60,c=8,spr=45,px=0,py=120,pspr=12},
-	{x=10,y=60,c=14,spr=44,px=20,py=120,pspr=14},
-	{x=80,y=60,c=12,spr=60,px=40,py=120,pspr=46}
+	{x=120,y=60,c=8,spr=45,px=2,py=118,pspr=12},
+	{x=10,y=60,c=14,spr=44,px=22,py=118,pspr=14},
+	{x=80,y=60,c=12,spr=60,px=42,py=118,pspr=46}
 }
 
 function BOOT()
