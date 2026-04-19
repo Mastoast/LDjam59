@@ -8,25 +8,22 @@
 require "objects"
 require "utils"
 
-objects = {}
-inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
-selected = nil
-
-heroes = {
-	{x=120,y=60,c=8,spr=45,px=2,py=118,pspr=12},
-	{x=10,y=60,c=14,spr=44,px=22,py=118,pspr=14},
-	{x=80,y=60,c=12,spr=60,px=42,py=118,pspr=46}
-}
-
 function BOOT()
 	t=0
+	objects = {}
+	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
+	selected = nil
+
+	heroes = {
+		{x=120,y=60,c=8,spr=45,px=2,py=118,pspr=12},
+		{x=10,y=60,c=14,spr=44,px=22,py=118,pspr=14},
+		{x=80,y=60,c=12,spr=60,px=42,py=118,pspr=46}
+	}
 
 	init_heros(heroes)
 	--
-	threat1 = create(threat, 180, 70)
-	threat1.delay = 900
-	threat2 = create(threat, 25, 25)
-	threat2.delay = 2500
+	threat:spawn(180, 70, 900, 50, "gun")
+	threat:spawn(25, 25, 2500, 50, "fire")
 end
 
 function init_heros(heroes)

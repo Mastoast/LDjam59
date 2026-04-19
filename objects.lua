@@ -133,8 +133,16 @@ end
 -- THREAT
 threat = new_type(button)
 threat.score = 50
-threat.type = "fire"
 threat.delay = 180
+threat.type = "fire"
+
+function threat.spawn(self, x, y, delay, score, type)
+	local nt = create(self, x, y)
+	nt.delay = delay
+	nt.score = score
+	nt.type = type
+	return nt
+end
 
 function threat.update(self)
 	self.delay = self.delay - 1
