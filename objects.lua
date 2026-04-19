@@ -147,13 +147,16 @@ end
 -- THREAT
 threat = new_type(button)
 threat.score = 50
+threat.mscore = 50
 threat.delay = 180
 threat.type = "fire"
+threat.spr = 142
 
 function threat.spawn(self, x, y, delay, score, type)
 	local nt = create(self, x, y)
 	nt.delay = delay
 	nt.score = score
+	nt.mscore = score
 	nt.type = type
 	return nt
 end
@@ -167,10 +170,13 @@ end
 
 function threat.draw(self)
 	circb(self.x, self.y, 4, 2)
-	trib(self.x,self.y,self.x-3,self.y-5,self.x+3,self.y-5,4)
-	circ(self.x, self.y-10, 5, 4)
+	spr(self.spr,self.x-16,self.y-16,0,1,0,0,2,2)
+	printc(math.ceil(self.delay/60), self.x+1, self.y-10+1, 3)
 	printc(math.ceil(self.delay/60), self.x, self.y-10, 12)
-	-- circb(self.target.x, self.target.y, 5, 11)
+	if self.score ~= self.mscore then
+		-- line(self.x-16+1,self.y+1,self.x-16+1,lerp(self.y-8, self.y, 1-self.score/self.mscore)+1,3)
+		line(self.x-16,self.y,self.x-16,lerp(self.y-8, self.y, 1-self.score/self.mscore),7)
+	end
 end
 
 function threat.fight(self)
