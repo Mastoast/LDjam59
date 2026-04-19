@@ -7,6 +7,7 @@
 
 require "objects"
 require "utils"
+require "particles"
 
 function BOOT()
 	t=0
@@ -21,6 +22,11 @@ function BOOT()
 	}
 
 	init_heros(heroes)
+	-- rain effect
+	-- make_rain_ps(20, 0)
+	-- make_rain_ps(20, 0)
+	-- make_rain_ps(20, 0)
+	-- make_rain_ps(20, 0)
 	--
 	threat:spawn(180, 70, 900, 50, "gun")
 	threat:spawn(25, 25, 2500, 50, "fire")
@@ -54,6 +60,7 @@ function update()
 	for i, obj in ipairs(objects) do
         update_obj(obj, i)
     end
+	update_psystems()
 end
 
 function update_obj(obj, i)
@@ -79,6 +86,8 @@ end
 function draw()
 	cls(0)
 	map()
+	--
+	draw_psystems()
 	--
 	for i, obj in ipairs(objects) do
         obj:draw()
