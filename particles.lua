@@ -376,188 +376,6 @@ end
 --==================================================================================--
 -- SAMPLES PARTICLE SYSTEMS ========================================================--
 --==================================================================================--
-function make_bubbles_ps()
-	local ps = make_psystem(500, 3000, 1, 9, 0.5, 0.5)
-
-	ps.autoremove = false
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_constant,
-			params = { nextemittime = time(), speed = 0.2 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = 0, maxx = 240, miny = 100, maxy = 110, minstartvx = 0, maxstartvx = 0, minstartvy = -1.50, maxstartvy = -0.2 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_agespr,
-			params = { frames = { 16, 16, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19 } }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_orbit,
-			params = { phase = 0, speed = 0.001, xstrength = 0.5, ystrength = 0 }
-		}
-	)
-end
-
-function make_magicsparks_ps(ex, ey)
-	local ps = make_psystem(300, 1700, 1, 5, 1, 5)
-
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_burst,
-			params = { num = 10 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = ex - 8, maxx = ex + 8, miny = ey - 8, maxy = ey + 8, minstartvx = -1.5, maxstartvx = 1.5, minstartvy = -3, maxstartvy = -2 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_rndspr,
-			params = { frames = { 32, 33, 34, 35, 36 } }
-			-- params = { frames = {32,33,34,35,36}, colors = {8,9,11,12,14} }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_force,
-			params = { fx = 0, fy = 0.3 }
-		}
-	)
-end
-
-function make_butterflies_ps(ex, ey)
-	local ps = make_psystem(2000, 3000, 1, 9, 1, 5)
-
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_burst,
-			params = { num = 10 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = ex - 16, maxx = ex + 16, miny = ey - 8, maxy = ey + 8, minstartvx = 0, maxstartvx = 0, minstartvy = -1, maxstartvy = -0.5 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_animspr,
-			params = { frames = { 22, 23, 24, 23 }, speed = 0.2, currframe = 1 }
-			-- params = { frames = {22,23,24,23}, speed = 0.5, colors = {8,9,11,12,14}, currframe = 1 }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_forcezone,
-			params = { fx = -0.05, fy = 0.0, zoneminx = 64, zonemaxx = 127, zoneminy = 64, zonemaxy = 100 }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_forcezone,
-			params = { fx = 0.05, fy = 0.0, zoneminx = 0, zonemaxx = 64, zoneminy = 30, zonemaxy = 70 }
-		}
-	)
-end
-
-function make_3dwarp_ps()
-	local ps = make_psystem(1000, 2000, 1, 2, 0.5, 0.5)
-	ps.autoremove = false
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_constant,
-			params = { nextemittime = time(), speed = 0.001 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = 118, maxx = 122, miny = 63, maxy = 67, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy = 0 }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_attract,
-			params = { x = 120, y = 65, mradius = 64, strength = 0.01 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_streak,
-			params = { colors = { 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 10, 15, 1, 10, 10, 10, 15, 10, 10, 15, 10, 15, 15 } }
-		}
-	)
-end
-
-function make_starfield_ps()
-	local ps = make_psystem(4000, 6000, 1, 2, 0.5, 0.5)
-	ps.autoremove = false
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_constant,
-			params = { nextemittime = time(), speed = 0.01 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = 235, maxx = 240, miny = 0, maxy = 136, minstartvx = -2.0, maxstartvx = -0.5, minstartvy = 0, maxstartvy = 0 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_pixel,
-			params = { colors = { 15, 10, 15, 10, 15, 10, 10, 15, 10, 15, 15, 10, 10, 15 } }
-		}
-	)
-end
-
-function make_rain_ps(ex, ey)
-	local ps = make_psystem(1500, 2000, 1, 2, 0.5, 0.5)
-	ps.autoremove = false
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_constant,
-			params = { nextemittime = time(), speed = 0.01 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = ex, maxx = ex+260, miny = ey-1, maxy = ey, minstartvx = -0.5, maxstartvx = 0.5, minstartvy = 0, maxstartvy = 0 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_streak,
-			params = { colors = { 15, 13, 2, 13, 13, 2, 13, 2, 2, 15, 15, 15 } }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_force,
-			params = { fx = -0.1, fy = 0.3 }
-		}
-	)
-	-- table.insert(ps.affectors,
-	-- 	{
-	-- 		affectfunc = affect_bouncezone,
-	-- 		params = { damping = 0.2, zoneminx = 40, zonemaxx = 200, zoneminy = 100, zonemaxy = 136 }
-	-- 	}
-	-- )
-end
 
 function make_blood_ps(ex, ey)
 	local ps = make_psystem(2000, 3000, 1, 2, 0.5, 0.5)
@@ -586,128 +404,43 @@ function make_blood_ps(ex, ey)
 			params = { fx = 0, fy = 0.15 }
 		}
 	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_stopzone,
-			params = { zoneminx = 0, zonemaxx = 240, zoneminy = 100, zonemaxy = 127 }
-		}
-	)
 end
 
-function make_sparks_ps(ex, ey)
-	local ps = make_psystem(300, 700, 1, 2, 0.5, 0.5)
 
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_burst,
-			params = { num = 10 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_point,
-			params = { x = ex, y = ey, minstartvx = -1.5, maxstartvx = 1.5, minstartvy = -3, maxstartvy = -2 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_fillcirc,
-			params = { colors = { 15, 14, 12, 9, 4, 3 } }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_force,
-			params = { fx = 0, fy = 0.3 }
-		}
-	)
-end
 
-function make_explosparks_ps(ex, ey)
-	local ps = make_psystem(300, 700, 1, 2, 0.5, 0.5)
+-- custom particles
 
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_burst,
-			params = { num = 10 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_point,
-			params = { x = ex, y = ey, minstartvx = -1.5, maxstartvx = 1.5, minstartvy = -1.5, maxstartvy = 1.5 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_pixel,
-			params = { colors = { 12, 10, 1, 4, 1, 2 } }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_force,
-			params = { fx = 0, fy = 0.1 }
-		}
-	)
-end
-
-function make_explosion_ps(ex, ey)
-	local ps = make_psystem(100, 500, 9, 14, 1, 3)
-
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_burst,
-			params = { num = 4 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_box,
-			params = { minx = ex - 4, maxx = ex + 4, miny = ey - 4, maxy = ey + 4, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy = 0 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_fillcirc,
-			params = { colors = { 15, 0, 14, 9, 9, 4 } }
-		}
-	)
-end
-
-function make_smoke_ps(ex, ey)
-	local ps = make_psystem(200, 2000, 1, 3, 6, 9)
-
+function make_rain_ps(ex, ey)
+	local ps = make_psystem(1500, 2000, 1, 2, 0.5, 0.5)
 	ps.autoremove = false
-
 	table.insert(ps.emittimers,
 		{
 			timerfunc = emittimer_constant,
-			params = { nextemittime = time(), speed = 200 }
+			params = { nextemittime = time(), speed = 0.01 }
 		}
 	)
 	table.insert(ps.emitters,
 		{
 			emitfunc = emitter_box,
-			params = { minx = ex - 4, maxx = ex + 4, miny = ey, maxy = ey + 2, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy = 0 }
+			params = { minx = ex, maxx = ex+260, miny = ey-1, maxy = ey, minstartvx = -0.5, maxstartvx = 0.5, minstartvy = 0, maxstartvy = 0 }
 		}
 	)
 	table.insert(ps.drawfuncs,
 		{
-			drawfunc = draw_ps_fillcirc,
-			params = { colors = { 1, 3, 2 } }
+			drawfunc = draw_ps_streak,
+			params = { colors = { 15, 13, 2, 13, 13, 2, 13, 2, 2, 15, 15, 15 } }
 		}
 	)
 	table.insert(ps.affectors,
 		{
 			affectfunc = affect_force,
-			params = { fx = 0.003, fy = -0.009 }
+			params = { fx = -0.1, fy = 0.3 }
 		}
 	)
 end
 
-function make_explosmoke_ps(ex, ey)
-	local ps = make_psystem(1500, 2000, 5, 8, 17, 18)
+function make_trail_ps(ex, ey)
+	local ps = make_psystem(600, 700, 3, 4, 1, 2)
 
 	table.insert(ps.emittimers,
 		{
@@ -724,18 +457,98 @@ function make_explosmoke_ps(ex, ey)
 	table.insert(ps.drawfuncs,
 		{
 			drawfunc = draw_ps_fillcirc,
-			params = { colors = { 2 } }
+			params = { colors = { 14 } }
 		}
 	)
 	table.insert(ps.affectors,
 		{
 			affectfunc = affect_force,
-			params = { fx = 0.003, fy = -0.01 }
+			params = { fx = -0.003, fy = -0.001 }
 		}
 	)
 end
 
--- make_starfield_ps(80, 80)
+function make_sparks_ps(ex, ey)
+	local ps = make_psystem(300, 700, 1, 2, 0.5, 0.5)
+
+	table.insert(ps.emittimers,
+		{
+			timerfunc = emittimer_burst,
+			params = { num = 10 }
+		}
+	)
+	table.insert(ps.emitters,
+		{
+			emitfunc = emitter_point,
+			params = { x = ex, y = ey, minstartvx = -1, maxstartvx = 1, minstartvy = -2, maxstartvy = -3 }
+		}
+	)
+	table.insert(ps.drawfuncs,
+		{
+			drawfunc = draw_ps_fillcirc,
+			params = { colors = { 15, 14, 12, 9, 4, 3 } }
+		}
+	)
+	table.insert(ps.affectors,
+		{
+			affectfunc = affect_force,
+			params = { fx = 0, fy = 0.1 }
+		}
+	)
+end
+
+function make_smoke_ps(ex, ey)
+	local ps = make_psystem(800, 1500, 1, 1, 6, 7)
+
+	table.insert(ps.emittimers,
+		{
+			timerfunc = emittimer_burst,
+			params = { num = 1 }
+		}
+	)
+	table.insert(ps.emitters,
+		{
+			emitfunc = emitter_point,
+			params = { x = ex, y = ey, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy = 0 }
+		}
+	)
+	table.insert(ps.drawfuncs,
+		{
+			drawfunc = draw_ps_fillcirc,
+			params = { colors = { 10, 1, 2 } }
+		}
+	)
+	table.insert(ps.affectors,
+		{
+			affectfunc = affect_force,
+			params = { fx = -0.003, fy = -0.009 }
+		}
+	)
+end
+
+function make_gunshot_ps(ex, ey)
+	local ps = make_psystem(100, 500, 7, 8, 1, 3)
+
+	table.insert(ps.emittimers,
+		{
+			timerfunc = emittimer_burst,
+			params = { num = 3 }
+		}
+	)
+	table.insert(ps.emitters,
+		{
+			emitfunc = emitter_box,
+			params = { minx = ex - 4, maxx = ex + 4, miny = ey - 4, maxy = ey + 4, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy = 0 }
+		}
+	)
+	table.insert(ps.drawfuncs,
+		{
+			drawfunc = draw_ps_fillcirc,
+			params = { colors = { 14, 13, 12, 3, 14 } }
+		}
+	)
+end
+
 --==================================================================================--
 -- DEMOS ===========================================================================--
 --==================================================================================--

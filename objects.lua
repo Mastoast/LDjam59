@@ -69,7 +69,7 @@ hero.hit_x = 4
 hero.hit_y = 4
 hero.start = nil
 hero.target = nil
-hero.speed = 2
+hero.speed = 0.5
 hero.c = 0
 hero.flip = 0
 
@@ -80,6 +80,10 @@ function hero.update(self)
 		end
 		if self.target.x < self.x then
 			self.flip = 1
+		end
+		--
+		if t%5 == 0 then
+			make_trail_ps(self.x, self.y)
 		end
 		--
 		local sdist = dist(self.start, self.target)
