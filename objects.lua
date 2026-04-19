@@ -71,9 +71,17 @@ hero.start = nil
 hero.target = nil
 hero.speed = 2
 hero.c = 0
+hero.flip = 0
 
 function hero.update(self)
 	if self.target then
+		if self.target.x > self.x then
+			self.flip = 0
+		end
+		if self.target.x < self.x then
+			self.flip = 1
+		end
+		--
 		local sdist = dist(self.start, self.target)
 		local cdist = dist(self, self.target)
 		local ndist = cdist - self.speed
@@ -88,6 +96,12 @@ function hero.update(self)
 			self.y = lerp(self.start.y, self.target.y, 1-ratio)
 		end
 	end
+
+	for key, obj in pairs(objects) do
+		if obj.parent == threat and obj:contains(self.x + self.hit_x, self.y + self.hit_y) then
+			obj:fight()
+		end
+	end
 end
 
 function hero.draw(self)
@@ -96,7 +110,7 @@ function hero.draw(self)
 		circ(self.target.x, self.target.y, 3, 11)
 		circb(self.target.x, self.target.y, 5, 11)
 	end
-	spr(self.spr, self.x - self.hit_x,self.y - self.hit_y, 0)
+	spr(self.spr, self.x - self.hit_x,self.y - self.hit_y, 0, 1, self.flip)
 	if selected == self then
 		circb(self.x,self.y,11,self.c)
 		circb(self.x,self.y,7,self.c)
@@ -152,8 +166,17 @@ function threat.update(self)
 end
 
 function threat.draw(self)
+	circb(self.x, self.y, 4, 2)
 	trib(self.x,self.y,self.x-3,self.y-5,self.x+3,self.y-5,4)
 	circ(self.x, self.y-10, 5, 4)
 	printc(math.ceil(self.delay/60), self.x, self.y-10, 12)
 	-- circb(self.target.x, self.target.y, 5, 11)
+end
+
+function threat.fight(self)
+	self.score = self.score - 1
+	self.delay = self.delay + 1
+	if self.score <= 0 then
+		self.destroyed = true
+	end
 end
