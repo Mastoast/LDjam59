@@ -73,7 +73,9 @@ function hero.update(self)
 	if self.target then
 		local sdist = dist(self.start, self.target)
 		local cdist = dist(self, self.target)
-		local ratio = (cdist-self.speed)/sdist
+		local ndist = cdist - self.speed
+		local ratio = ndist/sdist
+		ratio = math.max(0, math.min(1, ratio))
 		if cdist <= 1 then
 			self.x = self.target.x
 			self.y = self.target.y
