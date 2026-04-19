@@ -64,7 +64,9 @@ function button.draw(self)
 end
 
 -- HEROES
-hero = new_type(button)
+hero = new_type(object)
+hero.hit_x = 4
+hero.hit_y = 4
 hero.start = nil
 hero.target = nil
 hero.speed = 2
@@ -94,7 +96,7 @@ function hero.draw(self)
 		circ(self.target.x, self.target.y, 3, 11)
 		circb(self.target.x, self.target.y, 5, 11)
 	end
-	rect(self.x - self.hit_w/2,self.y - self.hit_h/2,self.hit_w,self.hit_h,self.c)
+	spr(self.spr, self.x - self.hit_x,self.y - self.hit_y, 0)
 	if selected == self then
 		circb(self.x,self.y,11,self.c)
 		circb(self.x,self.y,7,self.c)
@@ -102,9 +104,6 @@ function hero.draw(self)
 end
 
 function hero.set_target(self, tx, ty)
-	trace(self)
-	trace(tx)
-	trace(ty)
 	self.start = {x=self.x, y=self.y}
 	self.target = {x=tx, y=ty}
 end

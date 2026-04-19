@@ -12,29 +12,31 @@ objects = {}
 inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 selected = nil
 
+heroes = {
+	{x=120,y=60,c=8,spr=45,px=0,py=120,pspr=12},
+	{x=10,y=60,c=14,spr=44,px=20,py=120,pspr=14},
+	{x=80,y=60,c=12,spr=60,px=40,py=120,pspr=46}
+}
+
 function BOOT()
 	t=0
 
-	hero1 = create(hero, 120, 60)
-	hero1.c = 8
-	portrait1 = create(portrait, 0, 120)
-	portrait1.hero = hero1
-	portrait1.spr = 12
-	hero2 = create(hero, 10, 60)
-	hero2.c = 12
-	portrait2 = create(portrait, 20, 120)
-	portrait2.hero = hero2
-	portrait2.spr = 14
-	hero3 = create(hero, 80, 60)
-	hero3.c = 14
-	portrait3 = create(portrait, 40, 120)
-	portrait3.hero = hero3
-	portrait3.spr = 46
+	init_heros(heroes)
 	--
 	threat1 = create(threat, 180, 70)
 	threat1.delay = 900
 	threat2 = create(threat, 25, 25)
 	threat2.delay = 2500
+end
+
+function init_heros(heroes)
+	for index, value in ipairs(heroes) do
+		local h = create(hero, value.x, value.y)
+		h.c, h.spr = value.c, value.spr
+		local p = create(portrait, value.px, value.py)
+		p.hero = h
+		p.spr = value.pspr
+	end
 end
 
 function TIC()
