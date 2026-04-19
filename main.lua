@@ -14,8 +14,23 @@ selected = nil
 
 function BOOT()
 	t=0
-	test = create(button, 120, 120)
+
 	hero1 = create(hero, 120, 60)
+	hero1.c = 8
+	portrait1 = create(portrait, 0, 120)
+	portrait1.hero = hero1
+	portrait1.spr = 12
+	hero2 = create(hero, 10, 60)
+	hero2.c = 12
+	portrait2 = create(portrait, 20, 120)
+	portrait2.hero = hero2
+	portrait2.spr = 14
+	hero3 = create(hero, 80, 60)
+	hero3.c = 14
+	portrait3 = create(portrait, 40, 120)
+	portrait3.hero = hero3
+	portrait3.spr = 46
+	--
 	threat1 = create(threat, 180, 70)
 	threat1.delay = 900
 	threat2 = create(threat, 25, 25)
@@ -31,8 +46,10 @@ end
 function update()
 	updateInputs()
 	if inputs.clickL then
-		hero1.start = {x=hero1.x,y=hero1.y}
-		hero1.target = {x=inputs.x,y=inputs.y}
+		if selected and selected.parent == hero then
+			selected:set_target(inputs.x, inputs.y)
+			selected = nil
+		end
 	end
 	--
 	for i, obj in ipairs(objects) do
@@ -68,7 +85,7 @@ function draw()
         obj:draw()
     end
 	--
-	-- print(inputs.left,0, 0, 3)
+	if selected then print(selected,0, 0, 3) end
 end
 
 -- <TILES>

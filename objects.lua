@@ -35,8 +35,8 @@ function create(parent, x, y, hit_w, hit_h)
 	obj.parent = parent
     obj.x = x
     obj.y = y
-    obj.hit_w = hit_w or 8
-    obj.hit_h = hit_h or 8
+    obj.hit_w = hit_w or parent.hit_w or 8
+    obj.hit_h = hit_h or parent.hit_h or 8
 	setmetatable(obj, lookup)
 	table.insert(objects, obj)
 	obj:init()
@@ -68,6 +68,7 @@ hero = new_type(button)
 hero.start = nil
 hero.target = nil
 hero.speed = 2
+hero.c = 0
 
 function hero.update(self)
 	if self.target then
@@ -93,10 +94,39 @@ function hero.draw(self)
 		circ(self.target.x, self.target.y, 3, 11)
 		circb(self.target.x, self.target.y, 5, 11)
 	end
-	rect(self.x - self.hit_w/2,self.y - self.hit_h/2,self.hit_w,self.hit_h,8)
-
+	rect(self.x - self.hit_w/2,self.y - self.hit_h/2,self.hit_w,self.hit_h,self.c)
+	if selected == self then
+		circb(self.x,self.y,11,self.c)
+		circb(self.x,self.y,7,self.c)
+	end
 end
 
+function hero.set_target(self, tx, ty)
+	trace(self)
+	trace(tx)
+	trace(ty)
+	self.start = {x=self.x, y=self.y}
+	self.target = {x=tx, y=ty}
+end
+
+-- PORTRAITS
+portrait = new_type(button)
+portrait.hit_w = 16
+portrait.hit_h = 16
+portrait.hero = nil
+
+function portrait.draw(self)
+	if self.spr then
+		spr(self.spr,self.x,self.y,-1,1,0,0,self.hit_w/8,self.hit_h/8)
+		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
+	end
+end
+
+function portrait.on_click(self)
+	if self.hero then
+		selected = self.hero
+	end
+end
 
 -- THREAT
 threat = new_type(button)
