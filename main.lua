@@ -12,15 +12,15 @@ require "events"
 require "eprint"
 
 heroes_data = {
-	{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12,name="AguaMan"},
-	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="Milkachu"},
-	{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46,name="GreyJean"}
+	{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12,name="aguaman"},
+	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="milkachu"},
+	{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46,name="greyjean"}
 }
 
 function BOOT()
 	t=0
 	objects = {}
-	heroes = {}
+	heroes = {mcap={c=4,pspr=10}}
 	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 	selected = nil
 	event_idx = 1
