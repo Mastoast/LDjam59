@@ -106,9 +106,9 @@ end
 
 function hero.draw(self)
 	if self.target then
-		line(self.x, self.y, self.target.x, self.target.y, 11)
-		circ(self.target.x, self.target.y, 3, 11)
-		circb(self.target.x, self.target.y, 5, 11)
+		line(self.x, self.y, self.target.x, self.target.y, self.c)
+		circ(self.target.x, self.target.y, 3, self.c)
+		circb(self.target.x, self.target.y, 5, self.c)
 	end
 	spr(self.spr, self.x - self.hit_x,self.y - self.hit_y, 0, 1, self.flip)
 	if selected == self then
