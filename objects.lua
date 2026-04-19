@@ -35,8 +35,8 @@ function create(parent, x, y, hit_w, hit_h)
 	obj.parent = parent
     obj.x = x
     obj.y = y
-    obj.hit_w = hit_w or 8
-    obj.hit_h = hit_h or 8
+    obj.hit_w = hit_w or parent.hit_w or 8
+    obj.hit_h = hit_h or parent.hit_h or 8
 	setmetatable(obj, lookup)
 	table.insert(objects, obj)
 	obj:init()
@@ -50,34 +50,35 @@ button.hover=false
 button.selected=false
 
 function button.update(self)
-	local x,y,click=mouse()
-	self.hover=self:contains(x,y)
-	if (self.hover and inputs.clickL) then
-		self:on_click()
-	end
 end
+
 function button.on_click(self)
-	-- self.selected=true
 end
+
 function button.draw(self)
 	if self.hover then
-		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,4)
+		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w/2,4)
 	else
-		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w,3)
+		circ(self.x + self.hit_w/2,self.y + self.hit_h/2,self.hit_w/2,3)
 	end
 end
 
 -- HEROES
-hero = new_type(button)
+hero = new_type(object)
+hero.hit_x = 4
+hero.hit_y = 4
 hero.start = nil
 hero.target = nil
 hero.speed = 2
+hero.c = 0
 
 function hero.update(self)
 	if self.target then
 		local sdist = dist(self.start, self.target)
 		local cdist = dist(self, self.target)
-		local ratio = (cdist-self.speed)/sdist
+		local ndist = cdist - self.speed
+		local ratio = ndist/sdist
+		ratio = math.max(0, math.min(1, ratio))
 		if cdist <= 1 then
 			self.x = self.target.x
 			self.y = self.target.y
@@ -95,6 +96,64 @@ function hero.draw(self)
 		circ(self.target.x, self.target.y, 3, 11)
 		circb(self.target.x, self.target.y, 5, 11)
 	end
-	rect(self.x - self.hit_w/2,self.y - self.hit_h/2,self.hit_w,self.hit_h,8)
+	spr(self.spr, self.x - self.hit_x,self.y - self.hit_y, 0)
+	if selected == self then
+		circb(self.x,self.y,11,self.c)
+		circb(self.x,self.y,7,self.c)
+	end
+end
 
+function hero.set_target(self, tx, ty)
+	self.start = {x=self.x, y=self.y}
+	self.target = {x=tx, y=ty}
+end
+
+-- PORTRAITS
+portrait = new_type(button)
+portrait.hit_w = 16
+portrait.hit_h = 16
+portrait.hero = nil
+
+function portrait.draw(self)
+	spr(self.spr,self.x,self.y,-1,1,0,0,self.hit_w/8,self.hit_h/8)
+	if self.hover then
+		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,14)
+	else
+		rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
+	end
+	
+end
+
+function portrait.on_click(self)
+	if self.hero then
+		selected = self.hero
+	end
+end
+
+-- THREAT
+threat = new_type(button)
+threat.score = 50
+threat.delay = 180
+threat.type = "fire"
+
+function threat.spawn(self, x, y, delay, score, type)
+	local nt = create(self, x, y)
+	nt.delay = delay
+	nt.score = score
+	nt.type = type
+	return nt
+end
+
+function threat.update(self)
+	self.delay = self.delay - 1
+	if self.delay < 0 then
+		self.destroyed = true
+	end
+end
+
+function threat.draw(self)
+	trib(self.x,self.y,self.x-3,self.y-5,self.x+3,self.y-5,4)
+	circ(self.x, self.y-10, 5, 4)
+	printc(math.ceil(self.delay/60), self.x, self.y-10, 12)
+	-- circb(self.target.x, self.target.y, 5, 11)
 end

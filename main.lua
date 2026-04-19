@@ -8,14 +8,32 @@
 require "objects"
 require "utils"
 
-objects = {}
-inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
-selected = nil
-
 function BOOT()
 	t=0
-	test = create(button, 120, 120)
-	hero1 = create(hero, 120, 60)
+	objects = {}
+	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
+	selected = nil
+
+	heroes = {
+		{x=120,y=60,c=8,spr=45,px=2,py=118,pspr=12},
+		{x=10,y=60,c=14,spr=44,px=22,py=118,pspr=14},
+		{x=80,y=60,c=12,spr=60,px=42,py=118,pspr=46}
+	}
+
+	init_heros(heroes)
+	--
+	threat:spawn(180, 70, 900, 50, "gun")
+	threat:spawn(25, 25, 2500, 50, "fire")
+end
+
+function init_heros(heroes)
+	for index, value in ipairs(heroes) do
+		local h = create(hero, value.x, value.y)
+		h.c, h.spr = value.c, value.spr
+		local p = create(portrait, value.px, value.py)
+		p.hero = h
+		p.spr = value.pspr
+	end
 end
 
 function TIC()
@@ -27,13 +45,26 @@ end
 function update()
 	updateInputs()
 	if inputs.clickL then
-		hero1.start = {x=hero1.x,y=hero1.y}
-		hero1.target = {x=inputs.x,y=inputs.y}
+		if selected and selected.parent == hero then
+			selected:set_target(inputs.x, inputs.y)
+			selected = nil
+		end
 	end
 	--
 	for i, obj in ipairs(objects) do
-        obj:update()
+        update_obj(obj, i)
     end
+end
+
+function update_obj(obj, i)
+	obj.hover=obj:contains(inputs.x, inputs.y)
+	if (obj.hover and inputs.clickL) then
+		obj:on_click()
+	end
+	obj:update()
+	if obj.destroyed then
+		table.remove(objects, i)
+	end
 end
 
 function updateInputs()
@@ -53,7 +84,7 @@ function draw()
         obj:draw()
     end
 	--
-	-- print(inputs.left,0, 0, 3)
+	if selected then print(selected,0, 0, 3) end
 end
 
 -- <TILES>
