@@ -8,34 +8,40 @@
 require "objects"
 require "utils"
 require "particles"
+require "events"
+require "eprint"
+
+heroes_data = {
+	{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12,name="AguaMan"},
+	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="Milkachu"},
+	{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46,name="GreyJean"}
+}
 
 function BOOT()
 	t=0
 	objects = {}
+	heroes = {}
 	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 	selected = nil
+	event_idx = 1
 
-	heroes = {
-		{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12},
-		{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14},
-		{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46}
-	}
-
-	init_heros(heroes)
+	init_heros(heroes_data)
 	-- rain effect
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	--
-	threat:spawn(180, 70, 900, 50, "gun")
-	threat:spawn(25, 25, 2500, 50, "fire")
+	-- threat:spawn(180, 70, 900, 50, "gun")
+	-- threat:spawn(25, 25, 2500, 50, "fire")
 end
 
-function init_heros(heroes)
-	for index, value in ipairs(heroes) do
+function init_heros(heroes_data)
+	for index, value in ipairs(heroes_data) do
 		local h = create(hero, value.x, value.y)
 		h.c, h.spr = value.c, value.spr
+		h.pspr = value.pspr
+		heroes[value.name] = h
 		local p = create(portrait, value.px, value.py)
 		p.hero = h
 		p.spr = value.pspr
@@ -65,7 +71,29 @@ function update()
 	if not clickt and inputs.clickL then
 		selected = nil
 	end
+	update_lvl()
 	update_psystems()
+end
+
+function update_lvl()
+	ts = math.floor(t/60)
+	if event_idx > #events then return end
+
+	evt = events[event_idx]
+	if ts < evt.t then return end
+
+	if evt.type == "text" then
+		current_text = evt.text
+		if evt.char then
+			current_spr = heroes[evt.char].pspr
+		else
+			current_spr = nil
+		end
+	else
+		threat:spawn(evt.x, evt.y, evt.delay, evt.score, evt.type)
+	end
+
+	event_idx = event_idx + 1
 end
 
 function update_obj(obj, i)
@@ -103,7 +131,29 @@ function draw()
         obj:draw()
     end
 	--
+	draw_texts()
+	--
 	print(test,0, 0, 3)
+end
+
+ztext = {
+	{x={18,120},y={120,136}},
+	{x={120,222},y={120,136}},
+	{x={18,240},y={120,136}}
+}
+
+current_text = nil
+current_spr = nil
+
+function draw_texts()
+	rect(0,120,240,20,1)
+	rectb(0,120,240,16,2)
+	if current_text then
+		eprint(current_text,ztext[3].x,-1,ztext[3].y,1,14,false,1,false,0,0,false,3)
+	end
+	if current_spr then
+		spr(current_spr,1,120,-1,1,0,0,2,2)
+	end
 end
 
 -- <TILES>
