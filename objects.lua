@@ -138,7 +138,10 @@ function hero.draw(self)
 end
 
 function hero.on_click(self)
-	selected = self
+	if selected ~= self then
+		selected = self
+		sfx(23,'C-5',-1,3)
+	end
 end
 
 function hero.set_target(self, tx, ty)
@@ -177,6 +180,7 @@ threat.type = "fire"
 threat.spr = 142
 
 function threat.spawn(self, x, y, delay, score, type)
+	sfx(16,'C-2',-1,3)
 	local nt = create(self, x, y)
 	nt.delay = delay
 	nt.score = score
@@ -198,6 +202,7 @@ function threat.update(self)
 	self.delay = self.delay - 1
 	if self.delay < 0 then
 		self.destroyed = true
+		sfx(20,'C-4',-1,3)
 	end
 end
 
@@ -207,9 +212,11 @@ function threat.draw(self)
 	-- counter
 	printc(math.ceil(self.delay/60), self.x-8-1, self.y-12+1, 3)
 	printc(math.ceil(self.delay/60), self.x-8, self.y-12, 12)
+	-- HP
 	if self.score ~= self.mscore then
-		-- line(self.x-16+1,self.y+1,self.x-16+1,lerp(self.y-8, self.y, 1-self.score/self.mscore)+1,3)
+		line(self.x-17,self.y,self.x-17,lerp(self.y-8, self.y, 1-self.score/self.mscore),6)
 		line(self.x-16,self.y,self.x-16,lerp(self.y-8, self.y, 1-self.score/self.mscore),7)
+		pix(self.x-16,self.y,6)
 	end
 end
 
@@ -221,6 +228,7 @@ function threat.fight(self,str)
 	end
 	if self.score <= 0 then
 		self.destroyed = true
+		sfx(19,'C-3',-1,3)
 	end
 end
 
