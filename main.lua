@@ -180,7 +180,7 @@ end
 ztext = {
 	{x={18,120},y={120,136}},
 	{x={120,222},y={120,136}},
-	{x={18,240},y={120,136}}
+	{x={18,240},y={122,136}}
 }
 
 current_text = nil
@@ -191,7 +191,7 @@ function draw_texts()
 	rect(0,120,240,20,1)
 	rectb(0,120,240,16,2)
 	if current_text then
-		eprint(current_text,ztext[3].x,-1,ztext[3].y,1,14,false,1,false,0,0,false,3)
+		eprint(current_text,ztext[3].x,-1,ztext[3].y,-1,14,false,1,false,0,0,false,3)
 	end
 	if current_spr then
 		spr(current_spr,1,120,-1,1,0,0,2,2)
