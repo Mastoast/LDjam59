@@ -131,9 +131,17 @@ function hero.draw(self)
 	end
 	spr(self.spr, self.x + self.hit_x,self.y + self.hit_y, 0, 1, self.flip)
 	if selected == self then
-		circb(self.x,self.y,11,self.c)
+		-- selected
+		-- circb(self.x,self.y,11,self.c)
+		-- rectb(self.x+self.hit_x-4,self.y+self.hit_y-4, 16, 16,self.c)
+		print("[]",self.x+self.hit_x-12,self.y+self.hit_y-3,self.c,true,3)
 		-- mouse preview
 		circb(inputs.x, inputs.y, 3, self.c)
+	end
+	if self.hover and self ~= selected then
+		-- circb(self.x,self.y,11,self.c)
+		print("[]",self.x+self.hit_x-7,self.y+self.hit_y,self.c,true,2)
+		-- rectb(self.x+self.hit_x-4,self.y+self.hit_y-4, 16, 16,self.c)
 	end
 end
 
