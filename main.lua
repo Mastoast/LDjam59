@@ -173,9 +173,9 @@ function draw()
 		eprint("Thank you for playing !", {40,200}, 0, {20,100}, 0, 3, true, 2, false, 0, 2, false, 15)
 	end
 	--
-	print(math.floor(t/60),2, 2, 3)
-	print(math.floor(t/60),1, 1, 14)
-	print(test,1, 8, 14)
+	-- print(math.floor(t/60),2, 2, 3)
+	-- print(math.floor(t/60),1, 1, 14)
+	-- print(test,1, 8, 14)
 end
 
 ztext = {
