@@ -377,37 +377,6 @@ end
 -- SAMPLES PARTICLE SYSTEMS ========================================================--
 --==================================================================================--
 
-function make_blood_ps(ex, ey)
-	local ps = make_psystem(2000, 3000, 1, 2, 0.5, 0.5)
-
-	table.insert(ps.emittimers,
-		{
-			timerfunc = emittimer_burst,
-			params = { num = 30 }
-		}
-	)
-	table.insert(ps.emitters,
-		{
-			emitfunc = emitter_point,
-			params = { x = ex, y = ey, minstartvx = 1, maxstartvx = 3, minstartvy = -3, maxstartvy = -2 }
-		}
-	)
-	table.insert(ps.drawfuncs,
-		{
-			drawfunc = draw_ps_pixel,
-			params = { colors = { 6 } }
-		}
-	)
-	table.insert(ps.affectors,
-		{
-			affectfunc = affect_force,
-			params = { fx = 0, fy = 0.15 }
-		}
-	)
-end
-
-
-
 -- custom particles
 
 function make_rain_ps(ex, ey)
@@ -492,7 +461,7 @@ function make_sparks_ps(ex, ey)
 	table.insert(ps.affectors,
 		{
 			affectfunc = affect_force,
-			params = { fx = 0, fy = 0.1 }
+			params = { fx = 0, fy = 0.2 }
 		}
 	)
 end
@@ -601,6 +570,35 @@ function make_unrest_ps(ex, ey)
 		{
 			drawfunc = draw_ps_streak,
 			params = { colors = {15,6,7} }
+		}
+	)
+end
+
+function make_fight_ps(ex, ey)
+	local ps = make_psystem(2000, 3000, 1, 2, 0.5, 0.5)
+
+	table.insert(ps.emittimers,
+		{
+			timerfunc = emittimer_burst,
+			params = { num = 30 }
+		}
+	)
+	table.insert(ps.emitters,
+		{
+			emitfunc = emitter_point,
+			params = { x = ex, y = ey, minstartvx = 1, maxstartvx = 3, minstartvy = -3, maxstartvy = -2 }
+		}
+	)
+	table.insert(ps.drawfuncs,
+		{
+			drawfunc = draw_ps_pixel,
+			params = { colors = { 6 } }
+		}
+	)
+	table.insert(ps.affectors,
+		{
+			affectfunc = affect_force,
+			params = { fx = 0, fy = 0.15 }
 		}
 	)
 end

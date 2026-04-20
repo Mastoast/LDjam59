@@ -38,7 +38,7 @@ function BOOT()
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	--
-	-- threat:spawn(50, 25, 2500, 480, "fire")
+	-- threat:spawn(120, 60, 2500, 100, "fire")
 	-- threat:spawn(100, 25, 2500, 480, "gun")
 	-- threat:spawn(155, 25, 2500, 480, "unrest")
 	-- local v = create(villain, 80, 60)

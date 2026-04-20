@@ -116,6 +116,10 @@ function hero.update(self)
 		end
 	end
 
+	if fighting then
+		make_fight_ps(self.x+self.hit_x, self.y+self.hit_y)
+	end
+
 	if not self.target and not fighting then
 		make_aura_ps(self.x+self.hit_x, self.y+self.hit_y)
 		if t%(self.mod*2) == self.mod then self.y = self.y + 1 end
@@ -218,9 +222,11 @@ function threat.update(self)
 end
 
 function threat.draw(self)
-	circb(self.x, self.y, 4, 2)
+	-- circb(self.x, self.y, 4, 2)
+	rectb(self.x-4+1, self.y-4+1, 8, 8, 3)
+	rectb(self.x-4, self.y-4, 8, 8, self.c)
 	-- spr(self.spr,self.x-16,self.y-16,0,1,0,0,2,2)
-	-- printc("!", self.x-1, self.y-12+1, 14, 2)
+	printc("!", self.x+1, self.y-16+1, 3, 2)
 	printc("!", self.x, self.y-16, self.c, 2)
 	-- counter
 	printc(math.ceil(self.delay/60), self.x-8-1, self.y-12+1, 3)
@@ -242,6 +248,7 @@ function threat.fight(self,str)
 	if self.score <= 0 then
 		self.destroyed = true
 		sfx(19,'C-3',-1,3)
+		make_sparks_ps(self.x, self.y)
 	end
 end
 
