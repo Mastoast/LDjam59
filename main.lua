@@ -20,7 +20,7 @@ heroes_data = {
 function BOOT()
 	t=0
 	objects = {}
-	heroes = {mcap={c=4,pspr=10}}
+	heroes = {mcap={c=4,pspr=10},info={c=14,pspr=8}}
 	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 	selected = nil
 	event_idx = 1
@@ -133,7 +133,7 @@ function draw()
 	--
 	draw_texts()
 	--
-	print(test,0, 0, 3)
+	-- print(test,0, 0, 3)
 end
 
 ztext = {
