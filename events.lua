@@ -73,7 +73,8 @@ events = {
 	{t=250,type="text", text="Ahah! it's me, Mr.Capitalism, ready to use my money to make even more money!",char="mcap"},
 	{t=250,x=20,y=40,delay=1500,score=80,type="gun"},	
 	{t=250,x=220,y=100,delay=1500,score=80,type="gun"},	
-
+	
+	{t=270,type="villain"},	
 	{t=270,type="text", text="He revealed himself... we need to stop him, all three of us... BEAT HIM UP!",char="milkachu"},
 
 
