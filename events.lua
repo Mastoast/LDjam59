@@ -9,27 +9,27 @@ events = {
 	{t=7,type="text", text="Holla Team, How is everyone today? Ready to fight crime?",char="aguaman"},
 	{t=12,type="text", text="HIII, I'm feeling soo good right now, I'm totally ready!",char="greyjean"},
 
-	{t=15,x=180,y=70,delay=900,score=50,type="fire"},
-	{t=18,type="text", text="a Fire? that's a job for me, wey.",char="aguaman"},
+	{t=15,x=70,y=70,delay=1500,score=80,type="fire"},
+	{t=18,type="text", text="A Fire? that's a job for me, wey.",char="aguaman"},
 	{t=23,type="text", text="I can do okay too, but not Grey Jeans...",char="milkachu"},
-	{t=25,x=180,y=70,delay=900,score=50,type="fire"},
+	{t=28,x=180,y=35,delay=1500,score=80,type="fire"},
 	{t=30,type="text", text="FIRE! So pretty.",char="greyjean"},
 
-	{t=35,x=180,y=70,delay=900,score=50,type="gun"},
+	{t=35,x=60,y=90,delay=1500,score=80,type="gun"},
 	{t=36,type="text", text="Don't count on me for that one. I have my aerobic class. Just send Milkachu.",char="aguaman"},
 
 	{t=42,type="text", text="He's too scared, feel free to send Grey Jeans to those too...",char="milkachu"},
 			
-	{t=46,x=180,y=70,delay=900,score=50,type="gun"},
+	{t=46,x=25,y=35,delay=1500,score=580,type="gun"},
 	{t=50,type="text", text="Talking to civilians? Hard pass...",char="milkachu"},
 
 	{t=55,type="text", text="ME! ME! ME!",char="greyjean"},
 
-	{t=70,type="text", text="Breaking News : Government to remove social safety nets 'it's cheaper that way'.",char="info"},
+	{t=70,type="text", text="Government to remove social safety nets 'it's cheaper that way'.",char="info"},
 
-	{t=71,x=180,y=70,delay=900,score=50,type="unrest"},	
-	{t=71,x=180,y=70,delay=900,score=50,type="unrest"},
-	{t=73,x=180,y=70,delay=900,score=50,type="fire"},
+	{t=71,x=170,y=65,delay=1500,score=80,type="unrest"},	
+	{t=71,x=90,y=90,delay=1500,score=80,type="unrest"},
+	{t=73,x=110,y=30,delay=1500,score=80,type="fire"},
 
 	{t=80,type="text", text="They keep talking about a certain... Capitalism? Should we look into it?",char="greyjean"},
 
@@ -37,41 +37,41 @@ events = {
 
 	{t=95,type="text", text="Oh...",char="aguaman"},
 
-	{t=110,type="text", text="Breaking News : Government to still do nothing about the environment following COP 142",char="info"},
-	{t=111,x=180,y=70,delay=900,score=50,type="unrest"},
-	{t=111,x=180,y=70,delay=900,score=50,type="unrest"},
-	{t=111,x=180,y=70,delay=900,score=50,type="unrest"},
-	{t=115,x=180,y=70,delay=900,score=50,type="fire"},
+	{t=110,type="text", text="Government to still do nothing about the environment following COP 142",char="info"},
+	{t=111,x=180,y=70,delay=1500,score=80,type="unrest"},
+	{t=111,x=80,y=50,delay=1500,score=80,type="unrest"},
+	{t=111,x=80,y=115,delay=1500,score=80,type="unrest"},
+	{t=115,x=90,y=105,delay=1500,score=80,type="fire"},
 
 	{t=120,type="text", text="Anyway, have you guys read/watched something nice lately?",char="greyjean"},
 	
-	{t=128,type="text", text="no. Chainsawman ending was ass...",char="milkachu"},
+	{t=128,type="text", text="No. Chainsawman ending was ass...",char="milkachu"},
 	
 	{t=135,type="text", text="Ay, I heard as much.",char="aguaman"},
 
-	{t=150,type="text", text="there is a lot more than usual!!",char="greyjean"},
+	{t=150,type="text", text="There is a lot more than usual!!",char="greyjean"},
 	{t=156,type="text", text="Yeah... it's exhausting...",char="milkachu"},
 
 	{t=170,type="text", text="We need to find a lead on that Capitalism guy!",char="aguaman"},
 
-	{t=185,type="text", text="Breaking News : government to replace super heroes by AI agents piloting military grade drones",char="info"},
-	{t=186,x=180,y=70,delay=900,score=50,type="gun"},
-	{t=186,x=180,y=70,delay=900,score=50,type="gun"},
-	{t=186,x=180,y=70,delay=900,score=50,type="gun"},	
+	{t=185,type="text", text="Government to replace super heroes by AI agents piloting military drones",char="info"},
+	{t=186,x=180,y=80,delay=1500,score=80,type="gun"},
+	{t=186,x=90,y=90,delay=1500,score=80,type="gun"},
+	{t=186,x=30,y=40,delay=1500,score=80,type="gun"},	
 
 	{t=200,type="text", text="I heard someone who heard someone say that Capitalism going to do something in the docks!",char="greyjean"},
 
 	{t=210,type="text", text="Caramba, what is happening?",char="aguaman"},
-	{t=210,x=180,y=70,delay=900,score=50,type="unrest"},	
-	{t=210,x=180,y=70,delay=900,score=50,type="fire"},			
-	{t=210,x=180,y=70,delay=900,score=50,type="unrest"},	
-	{t=215,x=180,y=70,delay=900,score=50,type="fire"},
-	{t=215,x=180,y=70,delay=900,score=50,type="unrest"},	
-	{t=215,x=180,y=70,delay=900,score=50,type="fire"},	
+	{t=210,x=180,y=70,delay=1500,score=80,type="unrest"},	
+	{t=210,x=160,y=60,delay=1500,score=80,type="fire"},			
+	{t=210,x=25,y=110,delay=1500,score=80,type="unrest"},	
+	{t=215,x=120,y=60,delay=1500,score=80,type="fire"},
+	{t=215,x=175,y=310,delay=1500,score=80,type="unrest"},	
+	{t=215,x=65,y=50,delay=1500,score=80,type="fire"},	
 
 	{t=240,type="text", text="Ahah! it's me, Mr.Capitalism, ready to use my money to make even more money",char="mcap"},
-	{t=240,x=180,y=70,delay=900,score=50,type="gun"},	
-	{t=240,x=180,y=70,delay=900,score=50,type="gun"},	
+	{t=240,x=20,y=40,delay=1500,score=80,type="gun"},	
+	{t=240,x=220,y=100,delay=1500,score=80,type="gun"},	
 
 	{t=260,type="text", text="He just revealed himself, we need to stop him now, all three of us...",char="milkachu"},
 
