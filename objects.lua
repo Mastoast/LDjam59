@@ -88,7 +88,7 @@ function hero.update(self)
 		end
 		--
 		if t%5 == 0 then
-			make_trail_ps(self.x, self.y)
+			make_trail_ps(self.x, self.y, self.c)
 		end
 		--
 		local sdist = dist(self.start, self.target)
@@ -108,7 +108,10 @@ function hero.update(self)
 	local fighting = false
 	for key, obj in pairs(objects) do
 		if obj.parent == threat and obj:contains(self.x - self.hit_x, self.y - self.hit_y) then
-			obj:fight()
+			local strength = 1
+			if obj.type == self.strong then strength = 2 end
+			if obj.type == self.weak then strength = 0 end
+			obj:fight(strength)
 			fighting=true
 		end
 	end
@@ -123,13 +126,14 @@ end
 function hero.draw(self)
 	if self.target then
 		line(self.x, self.y, self.target.x, self.target.y, self.c)
-		circ(self.target.x, self.target.y, 3, self.c)
+		circb(self.target.x, self.target.y, 3, self.c)
 		circb(self.target.x, self.target.y, 5, self.c)
 	end
 	spr(self.spr, self.x + self.hit_x,self.y + self.hit_y, 0, 1, self.flip)
 	if selected == self then
 		circb(self.x,self.y,11,self.c)
-		circb(self.x,self.y,7,self.c)
+		-- mouse preview
+		circb(inputs.x, inputs.y, 3, self.c)
 	end
 end
 
@@ -156,7 +160,6 @@ function portrait.draw(self)
 	-- else
 	-- 	rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
 	-- end
-	
 end
 
 function portrait.on_click(self)
@@ -201,17 +204,21 @@ end
 function threat.draw(self)
 	circb(self.x, self.y, 4, 2)
 	spr(self.spr,self.x-16,self.y-16,0,1,0,0,2,2)
-	printc(math.ceil(self.delay/60), self.x+1, self.y-10+1, 3)
-	printc(math.ceil(self.delay/60), self.x, self.y-10, 12)
+	-- counter
+	printc(math.ceil(self.delay/60), self.x-8-1, self.y-12+1, 3)
+	printc(math.ceil(self.delay/60), self.x-8, self.y-12, 12)
 	if self.score ~= self.mscore then
 		-- line(self.x-16+1,self.y+1,self.x-16+1,lerp(self.y-8, self.y, 1-self.score/self.mscore)+1,3)
 		line(self.x-16,self.y,self.x-16,lerp(self.y-8, self.y, 1-self.score/self.mscore),7)
 	end
 end
 
-function threat.fight(self)
-	self.score = self.score - 1
-	self.delay = self.delay + 1
+function threat.fight(self,str)
+	local str = str or 1
+	self.score = self.score - str
+	if str > 0 then
+		self.delay = self.delay + 1
+	end
 	if self.score <= 0 then
 		self.destroyed = true
 	end

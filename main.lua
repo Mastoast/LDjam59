@@ -12,9 +12,9 @@ require "events"
 require "eprint"
 
 heroes_data = {
-	{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12,name="aguaman"},
-	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="milkachu"},
-	{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46,name="greyjean"}
+	{x=120,y=60,c=9,spr=45,px=2,py=218,pspr=12,name="aguaman",strong="fire",weak="gun"},
+	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="milkachu",strong="gun",weak="unrest"},
+	{x=80,y=60,c=7,spr=60,px=42,py=218,pspr=46,name="greyjean",strong="unrest",weak="fire"}
 }
 
 function BOOT()
@@ -25,7 +25,7 @@ function BOOT()
 	selected = nil
 	event_idx = 1
 	next_threat = 43
-	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=50,smax=50}
+	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=480,smax=480}
 	threats = {"fire","gun","unrest"}
 	init_heros(heroes_data)
 	-- rain effect
@@ -34,9 +34,9 @@ function BOOT()
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	--
-	-- threat:spawn(50, 25, 2500, 50, "fire")
-	-- threat:spawn(100, 25, 2500, 50, "gun")
-	-- threat:spawn(155, 25, 2500, 50, "unrest")
+	-- threat:spawn(50, 25, 2500, 480, "fire")
+	-- threat:spawn(100, 25, 2500, 480, "gun")
+	-- threat:spawn(155, 25, 2500, 480, "unrest")
 end
 
 function init_heros(heroes_data)
@@ -44,6 +44,8 @@ function init_heros(heroes_data)
 		local h = create(hero, value.x, value.y)
 		h.c, h.spr = value.c, value.spr
 		h.pspr = value.pspr
+		h.strong = value.strong
+		h.weak = value.weak
 		heroes[value.name] = h
 		local p = create(portrait, value.px, value.py)
 		p.hero = h
@@ -100,6 +102,7 @@ function update_lvl()
 		current_text = evt.text
 		if evt.char then
 			current_spr = heroes[evt.char].pspr
+			text_color = heroes[evt.char].c
 		else
 			current_spr = nil
 		end
@@ -158,6 +161,7 @@ ztext = {
 }
 
 current_text = nil
+text_color = nil
 current_spr = nil
 
 function draw_texts()
@@ -168,6 +172,7 @@ function draw_texts()
 	end
 	if current_spr then
 		spr(current_spr,1,120,-1,1,0,0,2,2)
+		rectb(0,119,17,17,text_color)
 	end
 end
 
