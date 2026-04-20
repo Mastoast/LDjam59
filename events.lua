@@ -4,7 +4,7 @@ events = {
 	-- {t=7,x=25,y=25,delay=2500,score=50,type="gun"},
 	-- {t=7,type="text",text="yo c'est le test la mif !! le texte est carrément trop long non ? c'est bon il y a 90 caractères la ?",char="aguaman"},
 	-- {t=17,type="text"} -- hide the text at 17 seconds
-	{t=1,track=2,tempo=82,speed=6,type="music"},
+	{t=0,track=0,type="music"},
 	{t=4,type="text", text="Good evening... and welcome to our new dispatcher.",char="milkachu"},
 	{t=9,type="text", text="Holla Team, How is everyone today? Ready to fight crime?",char="aguaman"},
 	{t=17,type="text", text="HIII, I'm feeling soo good right now, I'm totally ready!",char="greyjean"},
