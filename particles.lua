@@ -549,6 +549,35 @@ function make_gunshot_ps(ex, ey)
 	)
 end
 
+function make_aura_ps(ex, ey)
+	local ps = make_psystem(200,250, 1,2,0.5,0.5)
+	ps.autoremove = false
+	table.insert(ps.emittimers,
+		{
+			timerfunc = emittimer_burst,
+			params = { num = 1 }
+		}
+	)
+	table.insert(ps.emitters,
+		{
+			emitfunc = emitter_box,
+			params = { minx = ex, maxx = ex+8, miny = ey, maxy= ey+8, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy=0 }
+		}
+	)
+	table.insert(ps.affectors,
+		{
+			affectfunc = affect_attract,
+			params = { x = ex+4, y = ey+4, mradius = 64, strength = 0.01 }
+		}
+	)
+	table.insert(ps.drawfuncs,
+		{
+			drawfunc = draw_ps_streak,
+			params = { colors = {12,13,14} }
+		}
+	)
+end
+
 --==================================================================================--
 -- DEMOS ===========================================================================--
 --==================================================================================--
