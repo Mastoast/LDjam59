@@ -183,7 +183,7 @@ function threat.update(self)
 		make_gunshot_ps(self.x, self.y)
 	end
 	if self.type == "unrest" and t%20==0 then
-		make_blood_ps(self.x, self.y)
+		make_unrest_ps(self.x, self.y)
 	end
 	self.delay = self.delay - 1
 	if self.delay < 0 then

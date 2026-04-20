@@ -498,7 +498,7 @@ function make_sparks_ps(ex, ey)
 end
 
 function make_smoke_ps(ex, ey)
-	local ps = make_psystem(800, 1500, 1, 1, 6, 7)
+	local ps = make_psystem(800, 1500, 1, 1, 5, 6)
 
 	table.insert(ps.emittimers,
 		{
@@ -521,13 +521,13 @@ function make_smoke_ps(ex, ey)
 	table.insert(ps.affectors,
 		{
 			affectfunc = affect_force,
-			params = { fx = -0.003, fy = -0.009 }
+			params = { fx = 0.003, fy = -0.005 }
 		}
 	)
 end
 
 function make_gunshot_ps(ex, ey)
-	local ps = make_psystem(100, 500, 7, 8, 1, 3)
+	local ps = make_psystem(100, 500, 6, 7, 1, 3)
 
 	table.insert(ps.emittimers,
 		{
@@ -578,6 +578,34 @@ function make_aura_ps(ex, ey)
 	)
 end
 
+function make_unrest_ps(ex, ey)
+	local ps = make_psystem(200,250, 1,2,0.5,0.5)
+	ps.autoremove = false
+	table.insert(ps.emittimers,
+		{
+			timerfunc = emittimer_burst,
+			params = { num = 20 }
+		}
+	)
+	table.insert(ps.emitters,
+		{
+			emitfunc = emitter_box,
+			params = { minx = ex, maxx = ex+8, miny = ey, maxy= ey+8, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy=0 }
+		}
+	)
+	table.insert(ps.affectors,
+		{
+			affectfunc = affect_attract,
+			params = { x = ex, y = ey+8, mradius = 64, strength = 0.001 }
+		}
+	)
+	table.insert(ps.drawfuncs,
+		{
+			drawfunc = draw_ps_streak,
+			params = { colors = {3,10,1} }
+		}
+	)
+end
 --==================================================================================--
 -- DEMOS ===========================================================================--
 --==================================================================================--

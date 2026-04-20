@@ -34,8 +34,9 @@ function BOOT()
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	--
-	-- threat:spawn(180, 70, 900, 50, "gun")
-	-- threat:spawn(25, 25, 2500, 50, "fire")
+	-- threat:spawn(50, 25, 2500, 50, "fire")
+	-- threat:spawn(100, 25, 2500, 50, "gun")
+	-- threat:spawn(155, 25, 2500, 50, "unrest")
 end
 
 function init_heros(heroes_data)
