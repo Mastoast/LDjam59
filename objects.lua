@@ -88,7 +88,7 @@ function hero.update(self)
 		end
 		--
 		if t%5 == 0 then
-			make_trail_ps(self.x, self.y)
+			make_trail_ps(self.x, self.y, self.c)
 		end
 		--
 		local sdist = dist(self.start, self.target)
@@ -156,7 +156,6 @@ function portrait.draw(self)
 	-- else
 	-- 	rectb(self.x-1,self.y-1,self.hit_w+2,self.hit_h+2,3)
 	-- end
-	
 end
 
 function portrait.on_click(self)

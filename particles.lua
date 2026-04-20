@@ -439,7 +439,7 @@ function make_rain_ps(ex, ey)
 	)
 end
 
-function make_trail_ps(ex, ey)
+function make_trail_ps(ex, ey, c)
 	local ps = make_psystem(600, 700, 3, 4, 1, 2)
 
 	table.insert(ps.emittimers,
@@ -457,7 +457,7 @@ function make_trail_ps(ex, ey)
 	table.insert(ps.drawfuncs,
 		{
 			drawfunc = draw_ps_fillcirc,
-			params = { colors = { 14 } }
+			params = { colors = { c or 14 } }
 		}
 	)
 	table.insert(ps.affectors,
@@ -551,7 +551,6 @@ end
 
 function make_aura_ps(ex, ey)
 	local ps = make_psystem(200,250, 1,2,0.5,0.5)
-	ps.autoremove = false
 	table.insert(ps.emittimers,
 		{
 			timerfunc = emittimer_burst,
@@ -580,7 +579,6 @@ end
 
 function make_unrest_ps(ex, ey)
 	local ps = make_psystem(200,250, 1,2,0.5,0.5)
-	ps.autoremove = false
 	table.insert(ps.emittimers,
 		{
 			timerfunc = emittimer_burst,

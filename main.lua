@@ -12,9 +12,9 @@ require "events"
 require "eprint"
 
 heroes_data = {
-	{x=120,y=60,c=8,spr=45,px=2,py=218,pspr=12,name="aguaman"},
-	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="milkachu"},
-	{x=80,y=60,c=12,spr=60,px=42,py=218,pspr=46,name="greyjean"}
+	{x=120,y=60,c=9,spr=45,px=2,py=218,pspr=12,name="aguaman",strong="fire",weak="gun"},
+	{x=10,y=60,c=14,spr=44,px=22,py=218,pspr=14,name="milkachu",strong="gun",weak="unrest"},
+	{x=80,y=60,c=7,spr=60,px=42,py=218,pspr=46,name="greyjean",strong="unrest",weak="fire"}
 }
 
 function BOOT()
@@ -44,6 +44,8 @@ function init_heros(heroes_data)
 		local h = create(hero, value.x, value.y)
 		h.c, h.spr = value.c, value.spr
 		h.pspr = value.pspr
+		h.strong = value.strong
+		h.weak = value.weak
 		heroes[value.name] = h
 		local p = create(portrait, value.px, value.py)
 		p.hero = h
@@ -100,6 +102,7 @@ function update_lvl()
 		current_text = evt.text
 		if evt.char then
 			current_spr = heroes[evt.char].pspr
+			text_color = heroes[evt.char].c
 		else
 			current_spr = nil
 		end
@@ -158,6 +161,7 @@ ztext = {
 }
 
 current_text = nil
+text_color = nil
 current_spr = nil
 
 function draw_texts()
@@ -168,6 +172,7 @@ function draw_texts()
 	end
 	if current_spr then
 		spr(current_spr,1,120,-1,1,0,0,2,2)
+		rectb(0,119,17,17,text_color)
 	end
 end
 
