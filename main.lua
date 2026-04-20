@@ -25,7 +25,7 @@ function BOOT()
 	selected = nil
 	event_idx = 1
 	next_threat = 43
-	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=50,smax=50}
+	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=480,smax=480}
 	threats = {"fire","gun","unrest"}
 	init_heros(heroes_data)
 	-- rain effect
@@ -34,9 +34,9 @@ function BOOT()
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
 	--
-	-- threat:spawn(50, 25, 2500, 50, "fire")
-	-- threat:spawn(100, 25, 2500, 50, "gun")
-	-- threat:spawn(155, 25, 2500, 50, "unrest")
+	-- threat:spawn(50, 25, 2500, 480, "fire")
+	-- threat:spawn(100, 25, 2500, 480, "gun")
+	-- threat:spawn(155, 25, 2500, 480, "unrest")
 end
 
 function init_heros(heroes_data)

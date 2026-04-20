@@ -108,7 +108,10 @@ function hero.update(self)
 	local fighting = false
 	for key, obj in pairs(objects) do
 		if obj.parent == threat and obj:contains(self.x - self.hit_x, self.y - self.hit_y) then
-			obj:fight()
+			local strength = 1
+			if obj.type == self.strong then strength = 2 end
+			if obj.type == self.weak then strength = 0 end
+			obj:fight(strength)
 			fighting=true
 		end
 	end
@@ -123,13 +126,14 @@ end
 function hero.draw(self)
 	if self.target then
 		line(self.x, self.y, self.target.x, self.target.y, self.c)
-		circ(self.target.x, self.target.y, 3, self.c)
+		circb(self.target.x, self.target.y, 3, self.c)
 		circb(self.target.x, self.target.y, 5, self.c)
 	end
 	spr(self.spr, self.x + self.hit_x,self.y + self.hit_y, 0, 1, self.flip)
 	if selected == self then
 		circb(self.x,self.y,11,self.c)
-		circb(self.x,self.y,7,self.c)
+		-- mouse preview
+		circb(inputs.x, inputs.y, 3, self.c)
 	end
 end
 
@@ -208,9 +212,12 @@ function threat.draw(self)
 	end
 end
 
-function threat.fight(self)
-	self.score = self.score - 1
-	self.delay = self.delay + 1
+function threat.fight(self,str)
+	local str = str or 1
+	self.score = self.score - str
+	if str > 0 then
+		self.delay = self.delay + 1
+	end
 	if self.score <= 0 then
 		self.destroyed = true
 	end
