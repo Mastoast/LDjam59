@@ -100,11 +100,16 @@ function hero.update(self)
 			self.y = lerp(self.start.y, self.target.y, 1-ratio)
 		end
 	end
-
+	local fighting = false
 	for key, obj in pairs(objects) do
 		if obj.parent == threat and obj:contains(self.x - self.hit_x, self.y - self.hit_y) then
 			obj:fight()
+			fighting=true
 		end
+	end
+
+	if not self.target and not fighting then
+		make_aura_ps(self.x+self.hit_x, self.y+self.hit_y)
 	end
 end
 

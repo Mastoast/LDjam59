@@ -146,7 +146,8 @@ function draw()
 	--
 	draw_texts()
 	--
-	-- print(test,0, 0, 3)
+	print(math.floor(t/60),2, 2, 3)
+	print(math.floor(t/60),1, 1, 14)
 end
 
 ztext = {
