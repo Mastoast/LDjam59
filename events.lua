@@ -25,7 +25,7 @@ events = {
 
 	{t=55,type="text", text="ME! ME! ME!",char="greyjean"},
 
-	{t=70,type="text", text="Breaking News : Government to remove social safety nets, saying 'it's cheaper that way'.",char="info"},
+	{t=70,type="text", text="Breaking News : Government to remove social safety nets 'it's cheaper that way'.",char="info"},
 
 	{t=71,x=180,y=70,delay=900,score=50,type="unrest"},	
 	{t=71,x=180,y=70,delay=900,score=50,type="unrest"},
