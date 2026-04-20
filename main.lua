@@ -117,6 +117,8 @@ function update_lvl()
 		create(villain, -10, -10)
 	elseif evt.type == "stop" then
 		spawn_threats = false
+	elseif evt.type == "rain" then
+		make_rain_ps(20, 0)
 	elseif evt.type == "music" then
 		-- music([track=-1], [frame=-1], [row=-1], [loop=true], [sustain=false], [tempo=-1], [speed=-1])
 		local tempo, speed = evt.tempo or -1, evt.speed or -1
