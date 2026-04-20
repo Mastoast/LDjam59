@@ -10,15 +10,15 @@ events = {
 	{t=17,type="text", text="HIII, I'm feeling soo good right now, I'm totally ready!",char="greyjean"},
 
 	{t=21,x=70,y=70,delay=1500,score=80,type="fire"},
-	{t=24,type="text", text="A Fire? that's a job for me!",char="aguaman"},
+	{t=24,type="text", text="A distress signal for a Fire? That's a job for me!",char="aguaman"},
 	{t=34,x=180,y=35,delay=1500,score=80,type="fire"},
 	{t=36,type="text", text="I can do okay too, but not Grey Jeans...",char="milkachu"},
 
 	{t=48,x=60,y=90,delay=1500,score=80,type="gun"},
 
-	{t=51,type="text", text="Don't count on me for that one. I have my aerobic class. Just send Milkachu.",char="aguaman"},
+	{t=49,type="text", text="Don't count on me for that one. Just send Milkachu.",char="aguaman"},
 
-	{t=60,type="text", text="He's too scared, I can beat bad guys too!!",char="greyjean"},
+	{t=56,type="text", text="He's too scared, I can beat bad guys too!!",char="greyjean"},
 			
 	{t=69,x=25,y=35,delay=1500,score=580,type="unrest"},
 	{t=69,type="text", text="Talking to civilians? Hard pass...",char="milkachu"},
@@ -76,7 +76,7 @@ events = {
 	
 	{t=324,type="villain"},	
 	{t=324,type="text", text="He revealed himself... we need to stop him, all three of us... BEAT HIM UP!",char="milkachu"},
-	
+
 	-- {t=7,type="text", text="",char="milkachu"},
 
 	-- 	{t=7,type="text", text="",char="milkachu"},

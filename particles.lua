@@ -515,7 +515,7 @@ function make_smoke_ps(ex, ey)
 	table.insert(ps.drawfuncs,
 		{
 			drawfunc = draw_ps_fillcirc,
-			params = { colors = { 10, 1, 2 } }
+			params = { colors = { 4, 1, 2 } }
 		}
 	)
 	table.insert(ps.affectors,
@@ -600,7 +600,7 @@ function make_unrest_ps(ex, ey)
 	table.insert(ps.drawfuncs,
 		{
 			drawfunc = draw_ps_streak,
-			params = { colors = {3,10,1} }
+			params = { colors = {15,6,7} }
 		}
 	)
 end
