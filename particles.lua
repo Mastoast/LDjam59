@@ -574,25 +574,25 @@ function make_unrest_ps(ex, ey)
 	)
 end
 
-function make_fight_ps(ex, ey)
-	local ps = make_psystem(2000, 3000, 1, 2, 0.5, 0.5)
+function make_fight_ps(ex, ey, c)
+	local ps = make_psystem(200, 250, 1, 2, 0.5, 0.5)
 
 	table.insert(ps.emittimers,
 		{
 			timerfunc = emittimer_burst,
-			params = { num = 30 }
+			params = { num = 1 }
 		}
 	)
 	table.insert(ps.emitters,
 		{
 			emitfunc = emitter_point,
-			params = { x = ex, y = ey, minstartvx = 1, maxstartvx = 3, minstartvy = -3, maxstartvy = -2 }
+			params = { x = ex, y = ey, minstartvx = -2, maxstartvx = -1, minstartvy = -2, maxstartvy = -1 }
 		}
 	)
 	table.insert(ps.drawfuncs,
 		{
 			drawfunc = draw_ps_pixel,
-			params = { colors = { 6 } }
+			params = { colors = { c or 14 } }
 		}
 	)
 	table.insert(ps.affectors,

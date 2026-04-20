@@ -112,12 +112,12 @@ function hero.update(self)
 			if obj.type == self.strong then strength = 2 end
 			if obj.type == self.weak then strength = 0 end
 			obj:fight(strength)
-			fighting=true
+			fighting=strength>0
 		end
 	end
 
 	if fighting then
-		make_fight_ps(self.x+self.hit_x, self.y+self.hit_y)
+		make_fight_ps(self.x+self.hit_x, self.y+self.hit_y, self.c)
 	end
 
 	if not self.target and not fighting then
