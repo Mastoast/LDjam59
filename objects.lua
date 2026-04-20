@@ -223,3 +223,76 @@ function threat.fight(self,str)
 		self.destroyed = true
 	end
 end
+
+-- VILLAIN
+villain = new_type(object)
+villain.hit_x = -4
+villain.hit_y = -12
+villain.start = nil
+villain.target = nil
+villain.speed = 0.6
+villain.c = 4
+villain.flip = 0
+villain.mod = 60
+villain.spr = 43
+villain.set_target = hero.set_target
+villain.hp = 500
+
+function villain.init(self)
+	self:set_target(28*8, 14*8)
+end
+
+function villain.draw(self)
+	spr(self.spr, self.x + self.hit_x,self.y + self.hit_y, 0, 1, self.flip,0,1,2)
+end
+
+function villain.update(self)
+	if self.target then
+		if self.target.x > self.x then
+			self.flip = 0
+		end
+		if self.target.x < self.x then
+			self.flip = 1
+		end
+		--
+		if t%5 == 0 then
+			make_trail_ps(self.x, self.y, self.c)
+		end
+		--
+		local sdist = dist(self.start, self.target)
+		local cdist = dist(self, self.target)
+		local ndist = cdist - self.speed
+		local ratio = ndist/sdist
+		ratio = math.max(0, math.min(1, ratio))
+		if cdist <= 1 then
+			self.x = self.target.x
+			self.y = self.target.y
+			self.target = nil
+		else
+			self.x = lerp(self.start.x, self.target.x, 1-ratio)
+			self.y = lerp(self.start.y, self.target.y, 1-ratio)
+		end
+	end
+
+	local nb_hero = 0
+	for key, obj in pairs(objects) do
+		if obj.parent == hero and obj:contains(self.x, self.y) then
+			nb_hero = nb_hero + 1
+		end
+	end
+
+	if nb_hero >= 3 then
+		self.hp = self.hp - 1
+	end
+
+	-- win condition
+	if self.hp <= 0 then
+		self.destroyed = true
+	end
+
+	if not self.target then
+		if t%20==0 then make_smoke_ps(self.x+self.hit_x, self.y) end
+		if t%90==0 then make_gunshot_ps(self.x+self.hit_x, self.y) end
+		if t%100==0 then make_unrest_ps(self.x+self.hit_x, self.y) end
+	end
+end
