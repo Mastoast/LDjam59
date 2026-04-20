@@ -19,6 +19,7 @@ heroes_data = {
 
 function BOOT()
 	t=0
+	gstate = 1 -- 1 game -- 2 endscreen
 	objects = {}
 	heroes = {mcap={c=4,pspr=10},info={c=14,pspr=8}}
 	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
@@ -61,6 +62,7 @@ function TIC()
 end
 
 function update()
+	if gstate ~= 1 then return end
 	updateInputs()
 	if inputs.clickR then
 		if selected and selected.parent == hero then
@@ -104,6 +106,8 @@ function update_lvl()
 		if evt.char then
 			current_spr = heroes[evt.char].pspr
 			text_color = heroes[evt.char].c
+		elseif evt.type == "villain" then
+			create(villain, -10, -10)
 		else
 			current_spr = nil
 		end
@@ -150,6 +154,11 @@ function draw()
     end
 	--
 	draw_texts()
+	if gstate == 2 then
+		rect(40,20,160,80,14)
+		rectb(40,20,160,80,3)
+		eprint("Thank you for playing !", {40,200}, 0, {20,100}, 0, 3, true, 2, false, 0, 2, false, 15)
+	end
 	--
 	print(math.floor(t/60),2, 2, 3)
 	print(math.floor(t/60),1, 1, 14)

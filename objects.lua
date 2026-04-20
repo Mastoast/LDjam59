@@ -288,6 +288,7 @@ function villain.update(self)
 	-- win condition
 	if self.hp <= 0 then
 		self.destroyed = true
+		gstate = 2
 	end
 
 	if not self.target then
