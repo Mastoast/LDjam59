@@ -38,7 +38,7 @@ function create(parent, x, y, hit_w, hit_h)
     obj.hit_w = hit_w or parent.hit_w or 8
     obj.hit_h = hit_h or parent.hit_h or 8
 	setmetatable(obj, lookup)
-	table.insert(objects, obj)
+	table.insert(objects,1,obj)
 	obj:init()
 	return obj
 end
