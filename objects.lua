@@ -72,6 +72,11 @@ hero.target = nil
 hero.speed = 0.5
 hero.c = 0
 hero.flip = 0
+hero.mod = 60
+
+function hero.init(self)
+	self.mod = math.random(50,70)
+end
 
 function hero.update(self)
 	if self.target then
@@ -110,6 +115,8 @@ function hero.update(self)
 
 	if not self.target and not fighting then
 		make_aura_ps(self.x+self.hit_x, self.y+self.hit_y)
+		if t%(self.mod*2) == self.mod then self.y = self.y + 1 end
+		if t%(self.mod*2) == 0 then self.y = self.y - 1 end
 	end
 end
 
