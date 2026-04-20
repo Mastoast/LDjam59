@@ -171,11 +171,14 @@ function threat.spawn(self, x, y, delay, score, type)
 end
 
 function threat.update(self)
-	if self.type == "fire" then
+	if self.type == "fire" and t%20==0 then
 		make_smoke_ps(self.x, self.y)
 	end
-	if self.type == "gun" then
+	if self.type == "gun" and t%20==0 then
 		make_gunshot_ps(self.x, self.y)
+	end
+	if self.type == "unrest" and t%20==0 then
+		make_blood_ps(self.x, self.y)
 	end
 	self.delay = self.delay - 1
 	if self.delay < 0 then

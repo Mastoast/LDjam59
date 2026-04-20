@@ -30,3 +30,7 @@ end
 function dist(a, b)
     return math.sqrt((a.x - b.x)^2 + (a.y - b.y)^2)
 end
+
+function rchoice(table)
+    return table[math.random(#table)]
+end
