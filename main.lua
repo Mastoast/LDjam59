@@ -161,6 +161,8 @@ end
 -- 002:ccccceee8888cceeaaaa0cee888a0ceeccca0ccc0cca0c0c0cca0c0c0cca0c0c
 -- 003:eccccccccc888888caaaaaaaca888888cacccccccacccccccacc0ccccacc0ccc
 -- 004:ccccceee8888cceeaaaa0cee888a0ceeccca0cccccca0c0c0cca0c0c0cca0c0c
+-- 008:ddddddddddd00000d10eeeeed10e0e00d10eeeeed10e0000d10e0111d10e0111
+-- 009:dddddddd000000ddeeeeee0d000e0e0deeeeee0d0eeeee0d0e000e0d0eeeee0d
 -- 010:ccc333aaccc333aaccc333aaccc333aaccc444bbccc444bbc3333333ccc44335
 -- 011:aaaaccccaaaaccccaaaaccccaaaaccccbbbbccccbbbbccccaaaaaacc5335cccc
 -- 012:fffffffffffffffffffccdddfffcccddfffc889dff8c8899ff888339ff888899
@@ -172,6 +174,8 @@ end
 -- 018:ccca00ccaaaa0ccecaaa0ceeaaaa0ceeaaaa0cee8888ccee000cceeecccceeee
 -- 019:cacccccccaaaaaaacaaacaaacaaaaccccaaaaaaac8888888cc000cccecccccec
 -- 020:ccca00ccaaaa0ccecaaa0ceeaaaa0ceeaaaa0cee8888ccee000cceeecccceeee
+-- 024:d10e0000d10eeeeed10e0000d10eeeeed10e0000d10eeeeedd100000dddddddd
+-- 025:0e000e0deeeeee0d00000e0deeeeee0d00000e0deeeeee0d000000dddddddddd
 -- 026:cc4444a5cc444455ccc44422ccc44223ccc44455cccc4445ccccc355ccc33333
 -- 027:5a55cccc5555cccc2255cccc3225cccc5555cccc555ccccc53cccccc3333cccc
 -- 028:fff88839fff88399fff88833fff88899ffff8899ffffff88ffff4488fff88444
