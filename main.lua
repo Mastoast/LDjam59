@@ -28,11 +28,10 @@ function BOOT()
 	selected = nil
 	event_idx = 1
 	next_threat = 60
+	spawn_threats = true
 	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=480,smax=480}
 	threats = {"fire","gun","unrest"}
 	init_heros(heroes_data)
-	-- music([track=-1], [frame=-1], [row=-1], [loop=true], [sustain=false], [tempo=-1], [speed=-1])
-	music(2, -1, -1, true, false, -1, -1)
 	-- rain effect
 	-- make_rain_ps(20, 0)
 	-- make_rain_ps(20, 0)
@@ -92,7 +91,7 @@ function update_lvl()
 	ts = math.floor(t/60)
 
 	-- auto spawn theats
-	if ts >= next_threat then
+	if ts >= next_threat and spawn_threats then
 		local x, y = math.random(thp.xmin,thp.xmax), math.random(thp.ymin,thp.ymax)
 		local delay, score = math.random(thp.dmin,thp.dmax), math.random(thp.smin,thp.smax)
 		local type = rchoice(threats)
@@ -111,11 +110,17 @@ function update_lvl()
 		if evt.char then
 			current_spr = heroes[evt.char].pspr
 			text_color = heroes[evt.char].c
-		elseif evt.type == "villain" then
-			create(villain, -10, -10)
 		else
 			current_spr = nil
 		end
+	elseif evt.type == "villain" then
+		create(villain, -10, -10)
+	elseif evt.type == "stop" then
+		spawn_threats = false
+	elseif evt.type == "music" then
+		-- music([track=-1], [frame=-1], [row=-1], [loop=true], [sustain=false], [tempo=-1], [speed=-1])
+		local tempo, speed = evt.tempo or -1, evt.speed or -1
+		music(evt.track, -1, -1, true, false, tempo, speed)
 	else
 		threat:spawn(evt.x, evt.y, evt.delay, evt.score, evt.type)
 	end
