@@ -4,22 +4,22 @@ events = {
 	-- {t=7,x=25,y=25,delay=2500,score=50,type="gun"},
 	-- {t=7,type="text",text="yo c'est le test la mif !! le texte est carrément trop long non ? c'est bon il y a 90 caractères la ?",char="aguaman"},
 	-- {t=17,type="text"} -- hide the text at 17 seconds
-
+	{t=1,track=2,tempo=82,speed=6,type="music"},
 	{t=4,type="text", text="Good evening... and welcome to our new dispatcher.",char="milkachu"},
 	{t=9,type="text", text="Holla Team, How is everyone today? Ready to fight crime?",char="aguaman"},
 	{t=17,type="text", text="HIII, I'm feeling soo good right now, I'm totally ready!",char="greyjean"},
 
 	{t=21,x=70,y=70,delay=1500,score=80,type="fire"},
-	{t=24,type="text", text="A Fire? that's a job for me!",char="aguaman"},
+	{t=24,type="text", text="A distress signal for a Fire? That's a job for me!",char="aguaman"},
 	{t=34,x=180,y=35,delay=1500,score=80,type="fire"},
 	{t=36,type="text", text="I can do okay too, but not Grey Jeans...",char="milkachu"},
 
 	{t=48,x=60,y=90,delay=1500,score=80,type="gun"},
 
-	{t=51,type="text", text="Don't count on me for that one. I have my aerobic class. Just send Milkachu.",char="aguaman"},
+	{t=49,type="text", text="Don't count on me for that one. Just send Milkachu.",char="aguaman"},
 
-	{t=60,type="text", text="He's too scared, I can beat bad guys too!!",char="greyjean"},
-			
+	{t=56,type="text", text="He's too scared, I can beat bad guys too!!",char="greyjean"},
+	{t=60,track=2,tempo=164,speed=6,type="music"},			
 	{t=69,x=25,y=35,delay=1500,score=580,type="unrest"},
 	{t=69,type="text", text="Talking to civilians? Hard pass...",char="milkachu"},
 
@@ -73,10 +73,10 @@ events = {
 	{t=300,type="text", text="Ahah! it's me, Mr.Capitalism, ready to use my money to make even more money!",char="mcap"},
 	{t=300,x=20,y=40,delay=1500,score=80,type="gun"},	
 	{t=300,x=220,y=100,delay=1500,score=80,type="gun"},	
-	
+	{t=315,type="stop"},
 	{t=324,type="villain"},	
 	{t=324,type="text", text="He revealed himself... we need to stop him, all three of us... BEAT HIM UP!",char="milkachu"},
-	
+
 	-- {t=7,type="text", text="",char="milkachu"},
 
 	-- 	{t=7,type="text", text="",char="milkachu"},
