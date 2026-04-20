@@ -27,7 +27,7 @@ function BOOT()
 	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 	selected = nil
 	event_idx = 1
-	next_threat = 60
+	next_threat = 65
 	spawn_threats = true
 	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=480,smax=480}
 	threats = {"fire","gun","unrest"}
