@@ -194,6 +194,9 @@ function threat.spawn(self, x, y, delay, score, type)
 	nt.score = score
 	nt.mscore = score
 	nt.type = type
+	if type == "fire" then nt.c = 9 end
+	if type == "gun" then nt.c = 5 end
+	if type == "unrest" then nt.c = 7 end
 	return nt
 end
 
@@ -216,10 +219,12 @@ end
 
 function threat.draw(self)
 	circb(self.x, self.y, 4, 2)
-	spr(self.spr,self.x-16,self.y-16,0,1,0,0,2,2)
+	-- spr(self.spr,self.x-16,self.y-16,0,1,0,0,2,2)
+	-- printc("!", self.x-1, self.y-12+1, 14, 2)
+	printc("!", self.x, self.y-16, self.c, 2)
 	-- counter
 	printc(math.ceil(self.delay/60), self.x-8-1, self.y-12+1, 3)
-	printc(math.ceil(self.delay/60), self.x-8, self.y-12, 12)
+	printc(math.ceil(self.delay/60), self.x-8, self.y-12, self.c)
 	-- HP
 	if self.score ~= self.mscore then
 		line(self.x-17,self.y,self.x-17,lerp(self.y-8, self.y, 1-self.score/self.mscore),6)

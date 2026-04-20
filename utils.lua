@@ -22,9 +22,9 @@ function coserp(a,b,mu)
 	return a*(1-T)+b*T
 end
 
-function printc(t,x,y,c)
+function printc(t,x,y,c,s)
     local w=print(t,0,-8)
-    print(t,x-(w/2),y,c or 15)
+    print(t,x-(w/2),y,c or 15,false,s or 1)
 end
 
 function dist(a, b)

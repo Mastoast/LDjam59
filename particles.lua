@@ -588,7 +588,7 @@ function make_unrest_ps(ex, ey)
 	table.insert(ps.emitters,
 		{
 			emitfunc = emitter_box,
-			params = { minx = ex, maxx = ex+8, miny = ey, maxy= ey+8, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy=0 }
+			params = { minx = ex-4, maxx = ex+4, miny = ey-4, maxy= ey+4, minstartvx = 0, maxstartvx = 0, minstartvy = 0, maxstartvy=0 }
 		}
 	)
 	table.insert(ps.affectors,
