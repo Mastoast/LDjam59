@@ -226,11 +226,11 @@ function threat.draw(self)
 	rectb(self.x-4+1, self.y-4+1, 8, 8, 3)
 	rectb(self.x-4, self.y-4, 8, 8, self.c)
 	-- spr(self.spr,self.x-16,self.y-16,0,1,0,0,2,2)
-	printc("!", self.x+1, self.y-16+1, 3, 2)
-	printc("!", self.x, self.y-16, self.c, 2)
+	-- printc("!", self.x+1, self.y-16+1, 3, 2)
+	-- printc("!", self.x, self.y-16, self.c, 2)
 	-- counter
-	printc(math.ceil(self.delay/60), self.x-8-1, self.y-12+1, 3)
-	printc(math.ceil(self.delay/60), self.x-8, self.y-12, self.c)
+	printc(math.ceil(self.delay/60), self.x-0+1, self.y-12+1, 3)
+	printc(math.ceil(self.delay/60), self.x-0, self.y-12, self.c)
 	-- HP
 	if self.score ~= self.mscore then
 		line(self.x-17,self.y,self.x-17,lerp(self.y-8, self.y, 1-self.score/self.mscore),6)
