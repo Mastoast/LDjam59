@@ -426,6 +426,6 @@ end
 -- </TRACKS>
 
 -- <PALETTE>
--- 000:4141418d8d8dbababa24245ddd4274db74971d8d5948ba752c79b681b2e26d7195df7cd3cbae25faf8aceaeaea406d99
+-- 000:4141418d8d8dbababa24245ddd4274db74971d8d595dce812c79b681b2e26d7195df7cd3cbae25faf8aceaeaea406d99
 -- </PALETTE>
 
