@@ -24,8 +24,8 @@ function BOOT()
 	inputs = {x=0,y=0,left=false,clickL=false,releaseL=false}
 	selected = nil
 	event_idx = 1
-	next_threat = 40
-	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=500,dmax=1500,smin=50,smax=50}
+	next_threat = 43
+	thp = {xmin=20,xmax=240,ymin=20,ymax=118,dmin=1500,dmax=1500,smin=50,smax=50}
 	threats = {"fire","gun","unrest"}
 	init_heros(heroes_data)
 	-- rain effect

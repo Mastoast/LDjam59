@@ -18,7 +18,7 @@ events = {
 	{t=35,x=180,y=70,delay=900,score=50,type="gun"},
 	{t=36,type="text", text="Don't count on me for that one. I have my aerobic class. Just send Milkachu.",char="aguaman"},
 
-	{t=44,type="text", text="He's too scared, feel free to send Grey Jeans to those too...",char="milkachu"},
+	{t=42,type="text", text="He's too scared, feel free to send Grey Jeans to those too...",char="milkachu"},
 			
 	{t=46,x=180,y=70,delay=900,score=50,type="gun"},
 	{t=50,type="text", text="Talking to civilians? Hard pass...",char="milkachu"},
