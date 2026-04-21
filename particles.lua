@@ -623,3 +623,7 @@ function deleteallps()
 		particle_systems[key] = nil
 	end
 end
+
+--------------------------
+-- END OF PARTICLES
+--------------------------

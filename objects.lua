@@ -1,4 +1,6 @@
--- OBJECTS
+--------------------------
+-- START OF OBJECTS
+--------------------------
 
 object = {}
 object.hit_x = 0
@@ -113,6 +115,9 @@ function hero.update(self)
 			if obj.type == self.weak then strength = 0 end
 			obj:fight(strength)
 			fighting=strength>0
+		end
+		if obj.parent == villain and self:contains(obj.x, obj.y) then
+			fighting = true
 		end
 	end
 
@@ -264,7 +269,7 @@ villain.flip = 0
 villain.mod = 60
 villain.spr = 43
 villain.set_target = hero.set_target
-villain.hp = 500
+villain.hp = 120
 
 function villain.init(self)
 	self:set_target(28*8, 14*8)
@@ -316,6 +321,8 @@ function villain.update(self)
 	-- win condition
 	if self.hp <= 0 then
 		self.destroyed = true
+		sfx(19,'C-3',-1,3)
+		make_sparks_ps(self.x, self.y)
 		gstate = 2
 	end
 
@@ -325,3 +332,8 @@ function villain.update(self)
 		if t%100==0 then make_unrest_ps(self.x+self.hit_x, self.y) end
 	end
 end
+
+
+--------------------------
+-- END OF OBJECTS
+--------------------------

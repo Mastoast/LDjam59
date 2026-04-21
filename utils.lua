@@ -1,3 +1,7 @@
+--------------------------
+-- START OF UTILS
+--------------------------
+
 function lerp(a,b,mu)
 	return a*(1-mu)+b*mu
 end
@@ -34,3 +38,7 @@ end
 function rchoice(table)
     return table[math.random(#table)]
 end
+
+--------------------------
+-- END OF UTILS
+--------------------------
